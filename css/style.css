@@ -8,6 +8,22 @@ body {
   font-family: "Merriweather", serif;
   font-weight: 400;
   font-style: normal;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 96vh;
+}
+
+.navbar {
+  display: flex;
+}
+
+footer {
+  display: flex;
+  margin-top: auto;
+  justify-content:center;
+      align-items:center;
+  color: rgba(255, 255, 255, 0.4)
 }
 
 h2 {
@@ -18,6 +34,22 @@ h2 {
 
 a {
   color: #eb6f92;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  float: right;
+}
+
+li {
+  display: inline;
+  text-align: right;
+}
+
+li a {
+  text-decoration: none;
 }
 
 .container {
