@@ -1,16 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
+
 body {
   display: flex;
   flex-direction: column;
   background-color: #ffffe3;
   align-items: center;
   justify-content: center;
+  color: #282b2d;
+  font-family: 'Fraunces', serif;
 }
 
-.signin {
+.found_text {
+  margin: 4em 0;
   display: flex;
-  flex-direction: row;
-  padding: 0.5em;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
+h1 {
+  margin: 0;
+  font-size: 72px;  
+}
+
+#maxwell_div {
+  display: flex;
+  height: 60vh;
+  align-items: center;
+  justify-content: center;
+}
+
+
 
 img {
   padding: 4em;
