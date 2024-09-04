@@ -1,0 +1,17 @@
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffe3;
+  align-items: center;
+  justify-content: center;
+}
+
+.signin {
+  display: flex;
+  flex-direction: row;
+  padding: 0.5em;
+}
+
+img {
+  padding: 4em;
+}
