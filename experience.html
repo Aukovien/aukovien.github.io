@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>aukovien</title>
+        <link href="css/style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <header>
+            <a href="/">AUKOVIEN</a>
+            <nav>
+                <a href="https://github.com/Aukovien/">PROJECTS</a>
+                <a href="#competitions">COMPETITIONS</a>
+            </nav>
+        </header>
+
+        <div class="container space-grotesk-700">
+            <h1>My List</h1>
+            <ul id="item-list"></ul>
+            <!-- <div id="competitions" class="comp">
+                <h2>Recent competitions:</h2>
+                <div id="comp-5">
+                    <h3>
+                        <a href="https://ctftime.org/event/2604"
+                            >DEFCON CTF 2025 Qualifier</a
+                        >
+                    </h3>
+                    <div class="comp-stats">
+                        <p>
+                            <span style="color: var(--rose-0)">89th</span> out
+                            of 195 teams
+                        </p>
+                        <p>
+                            Team
+                            <a href="https://ctftime.org/team/354982"
+                                ><span style="color: var(--rose-0)"
+                                    >Zero Dark Nerdy</span
+                                ></a
+                            >
+                        </p>
+                    </div>
+                </div>
+
+                <div id="comp-4">
+                    <h3>
+                        <a
+                            href="https://www.regis.edu/academics/colleges-and-schools/anderson/rmccdc"
+                            >Collegiate Cyber Defense Competition 2025</a
+                        >
+                    </h3>
+                    <div class="comp-stats">
+                        <p>
+                            <span style="color: var(--rose-0)"
+                                >Rocky Mountain</span
+                            >
+                            Regional
+                        </p>
+                        <p>
+                            <span style="color: var(--rose-0)">3rd</span> place
+                        </p>
+                        <p>
+                            <span style="color: var(--rose-0)">80%</span>
+                            average uptime
+                        </p>
+                    </div>
+                </div>
+
+                <div id="comp-1">
+                    <h3>
+                        <a href="https://cptc-west.stanford.edu/"
+                            >Collegiate Penetration Testing Competition 10</a
+                        >
+                    </h3>
+                    <div class="comp-stats">
+                        <p>
+                            <span style="color: var(--rose-0)">West</span>
+                            Regional
+                        </p>
+                        <p>
+                            <span style="color: var(--rose-0)">22</span>
+                            findings
+                        </p>
+                    </div>
+                </div>
+                <div id="comp-2">
+                    <h3>National Cyber League 2024 Fall</h3>
+                    <div class="comp-stats">
+                        <p>Top <span style="color: var(--rose-0)">1%</span></p>
+                        <p>
+                            <span style="color: var(--rose-0)">74.3%</span>
+                            accuracy
+                        </p>
+                        <p>
+                            <span style="color: var(--rose-0)">92.6% </span
+                            >completion
+                        </p>
+                    </div>
+                </div>
+                <div id="comp-3">
+                    <h3>DEADFACE CTF 2024</h3>
+                    <div class="comp-stats">
+                        <p>Top <span style="color: var(--rose-0)">4%</span></p>
+                        <p>
+                            <span style="color: var(--rose-0)">47th</span> out
+                            of 1213 teams
+                        </p>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+
+        <footer class="space-grotesk-700">
+            <p>MMXXIV @ BOULDER, CO</p>
+        </footer>
+
+        <script>
+            // Function to load the list from a file
+            async function loadList() {
+                const response = await fetch("competitions.txt");
+                const data = await response.text();
+                const items = data.split("\n");
+
+                const listElement = document.getElementById("item-list");
+                items.forEach((item) => {
+                    if (item.trim()) {
+                        // Check if the item is not empty
+                        const li = document.createElement("li");
+                        li.textContent = item;
+                        listElement.appendChild(li);
+                    }
+                });
+            }
+
+            window.onload = loadList;
+        </script>
+    </body>
+</html>
