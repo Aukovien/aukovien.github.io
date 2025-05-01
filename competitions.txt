@@ -1,5 +1,5 @@
-DEFCON CTF 2025 Qualifier
-Collegiate Cyber Defense Competition 2025
-Collegiate Penetration Testing Competition 10
-National Cyber League 2024 Fall
-DEADFACE CTF 2024
+DEFCON CTF 2025 Qualifier|https://ctftime.org/event/2604|89th out of 195 teams|Team Zero Dark Nerdy
+Collegiate Cyber Defense Competition 2025|https://www.regis.edu/academics/colleges-and-schools/anderson/rmccdc|Rocky Mountain|3rd|80%
+Collegiate Penetration Testing Competition 10|West Regional|22 findings
+National Cyber League 2024 Fall|Top 1%|74.3% accuracy|92.6% completion
+DEADFACE CTF 2024|Top 4%|47th out of 1213 teams

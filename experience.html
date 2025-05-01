@@ -114,25 +114,51 @@
             <p>MMXXIV @ BOULDER, CO</p>
         </footer>
 
+        <h1>Competitions</h1>
+        <div id="competitions-container"></div>
+
         <script>
-            // Function to load the list from a file
-            async function loadList() {
+            async function loadCompetitions() {
                 const response = await fetch("competitions.txt");
                 const data = await response.text();
-                const items = data.split("\n");
+                const lines = data.split("\n");
 
-                const listElement = document.getElementById("item-list");
-                items.forEach((item) => {
-                    if (item.trim()) {
-                        // Check if the item is not empty
-                        const li = document.createElement("li");
-                        li.textContent = item;
-                        listElement.appendChild(li);
+                const container = document.getElementById(
+                    "competitions-container",
+                );
+                lines.forEach((line, index) => {
+                    if (line.trim()) {
+                        const properties = line.split("|");
+
+                        const compDiv = document.createElement("div");
+                        compDiv.id = `comp-${index + 1}`;
+                        compDiv.className = "competition";
+
+                        const title = properties[0];
+                        const link = properties[1];
+                        const stats = properties.slice(2);
+
+                        // title
+                        compDiv.innerHTML = `<h3><a href="${link}" target="_blank">${title}</a></h3>`;
+                        const statsDiv = document.createElement("div");
+                        statsDiv.className = "comp-stats";
+
+                        // stats
+                        stats.forEach((stat, statIndex) => {
+                            const p = document.createElement("p");
+                            p.textContent = stat;
+                            statsDiv.appendChild(p);
+                        });
+
+                        // append the stats to the comp
+                        compDiv.appendChild(statsDiv);
+                        // append comp to cont
+                        container.appendChild(compDiv);
                     }
                 });
             }
 
-            window.onload = loadList;
+            window.onload = loadCompetitions;
         </script>
     </body>
 </html>
