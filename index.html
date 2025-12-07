@@ -2,81 +2,212 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>aukovien</title>
-        <link href="css/style.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Aukovien</title>
+        <link rel="stylesheet" href="assets/css/style.css" />
     </head>
     <body>
-        <header>
-            <a href="/">AUKOVIEN</a>
-            <nav>
-                <a href="https://github.com/Aukovien/">PROJECTS</a>
-                <a href="#competitions">COMPETITIONS</a>
-            </nav>
-        </header>
-        
+        <div class="bg-atmosphere"></div>
+        <div class="bg-grid"></div>
 
-        <div class="container space-grotesk-700">
-            <div id="intro">
-                <h2>
-                    Hi there! My name is <span style="color: var(--rose-0);">Anar</span>.
-                </h2>
-                <p>
-                    I play CTFs and I code. 
-                    I am interested in working as a security engineer or a backend developer. 
-                    I also go by the name <span style="color: var(--rose-0);">Aukovien</span>.
-                </p>
+        <div class="grid-container">
+            <div class="panel p-sidebar">
+                <div>
+                    <div class="sidebar-avatar">
+                        <div class="avatar-inner">
+                            <img
+                                src="assets/img/pfp.jpg"
+                                class="avatar-img"
+                                alt="Profile Picture"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="hero-name">
+                        Anar<br /><span class="text-accent">Aukovien</span>
+                    </div>
+                    <p class="tagline">// CURIOUS HOW IT WORKS.<br />AND HOW IT BREAKS.</p>
+
+                    <p class="bio-text">
+                        Undergrad @ <strong>CU Boulder</strong>.
+                        Working towards a career in Security Engineering.
+                        I specialize in <strong>C & Python</strong> with a focus on web exploit and reverse engineering.
+                    </p>
+                </div>
+
+                <div class="contact-section">
+                    <h3 class="mono section-header">CONTACT</h3>
+
+                    <a
+                        href="https://github.com/aukovien"
+                        target="_blank"
+                        class="terminal-link"
+                    >
+                        <span class="cmd-arrow">></span> github.com/aukovien
+                    </a>
+
+                    <a
+                        href="https://linkedin.com/in/anarenkhzol"
+                        target="_blank"
+                        class="terminal-link"
+                    >
+                        <span class="cmd-arrow">></span> linkedin/anarenkhzol
+                    </a>
+
+                    <button class="btn-invert" onclick="toggleTheme()">
+                        Invert Visuals
+                    </button>
+                </div>
             </div>
 
-            <div id="competitions" class="comp">
-                <h2>Recent competitions:</h2>
-                <div id="comp-5">
-                    <h3><a href="https://ctftime.org/event/2604">DEFCON CTF 2025 Qualifier</a></h3>
-                    <div class="comp-stats">
-                        <p><span style="color: var(--rose-0);">89th</span> out of 195 teams</p>
-                        <p>Team <a href="https://ctftime.org/team/354982"><span style="color: var(--rose-0);">Zero Dark Nerdy</span></a></p>
+            <div class="panel p-project">
+                <h2>
+                    <span>Latest Project</span>
+                    <a
+                        href="https://github.com/Aukovien/bubbl"
+                        target="_blank"
+                        class="text-accent"
+                        >VIEW&#8599</a
+                    >
+                    <!--<span class="text-accent">• ACTIVE</span>-->
+                </h2>
+
+                <div class="project-card">
+                    <div class="project-info">
+                        <h1 class="project-title">bubbl</h1>
+                        <p class="project-desc">
+                            A Command Line Spotify monitoring tool that saves
+                            your listening history to a playlist. Syncs to
+                            capture missed songs and ensures the list remains
+                            duplicate-free.
+                        </p>
+                        <div class="mono tech-stack">
+                            <span class="tech-item">&gt Go</span>
+                            <span class="tech-item">&gt Spotify API</span>
+                        </div>
+                    </div>
+
+                    <div class="project-visual">
+                        <div class="code-block">no image found</div>
                     </div>
                 </div>
+            </div>
 
-                <div id="comp-4">
-                    <h3><a href="https://www.regis.edu/academics/colleges-and-schools/anderson/rmccdc">Collegiate Cyber Defense Competition 2025</a></h3>
-                    <div class="comp-stats">
-                        <p><span style="color: var(--rose-0);">Rocky Mountain</span> Regional</p>
-                        <p><span style="color: var(--rose-0);">3rd</span> place</p>
-                        <p><span style="color: var(--rose-0);">80%</span> average uptime</p>
-                    </div>
+            <div class="panel p-work">
+                <h2>Experience</h2>
+
+                <div class="job-item">
+                    <span class="job-company">Dedicated Desktop Support</span>
+                    <div class="job-role">Student Lead Technician</div>
+                    <span class="job-date">July 2023 - Present</span>
+                    <p class="job-desc">
+                        Led a team of student technicians in providing
+                        comprehensive hardware and software troubleshooting.
+                        Acted as an escalation point for resolving complex
+                        technical issues to maintain service standards.
+                    </p>
                 </div>
 
-
-                <div id="comp-1">
-                    <h3><a href="https://cptc-west.stanford.edu/">Collegiate Penetration Testing Competition 10</a></h3>
-                    <div class="comp-stats">
-                        <p><span style="color: var(--rose-0);">West</span> Regional</p>
-                        <p><span style="color: var(--rose-0);">22</span> findings</p>
-                    </div>
-
+                <div class="job-item">
+                    <span class="job-company">UpToStudy</span>
+                    <div class="job-role">Web Developer Intern</div>
+                    <span class="job-date">Aug 2024 - Oct 2024</span>
+                    <p class="job-desc">
+                        Developed a responsive landing page and optimized
+                        backend PHP logic for user data handling. Configured a
+                        PM2 routing system to efficiently manage subdomain
+                        traffic.
+                    </p>
                 </div>
-                <div id="comp-2">
-                    <h3>National Cyber League 2024 Fall</h3>
-                    <div class="comp-stats">
-                        <p>Top <span style="color: var(--rose-0);">1%</span></p>
-                        <p><span style="color: var(--rose-0);">74.3%</span> accuracy</p>
-                        <p><span style="color: var(--rose-0);">92.6% </span>completion</p>
-                    </div>
-                </div>
-                <div id="comp-3">
-                    <h3>DEADFACE CTF 2024</h3>
-                    <div class="comp-stats">
-                        <p>Top <span style="color: var(--rose-0);">4%</span></p>
-                        <p><span style="color: var(--rose-0);">47th</span> out of 1213 teams</p>
-                    </div>
 
+                <div class="job-item">
+                    <span class="job-company">CU Cybersecurity Club</span>
+                    <div class="job-role">Director</div>
+                    <span class="job-date">Aug 2024 - Present</span>
+                    <p class="job-desc">
+                        Did recruitment, competition lead, and funding
+                        management.
+                    </p>
+                </div>
+
+                <div class="job-item">
+                    <span class="job-company">Capture The Flame</span>
+                    <div class="job-role">Board / Challenge Creator</div>
+                    <span class="job-date">Oct 2024 - Present</span>
+                    <p class="job-desc">Created Crypto & Misc challenges.</p>
+                </div>
+
+                <div class="job-item">
+                    <span class="job-company">Sant Academy</span>
+                    <div class="job-role">Web Developer Intern</div>
+                    <span class="job-date">June 2019 - June 2020</span>
+                    <p class="job-desc">
+                        Developed a ReactJS platform to assist High School
+                        students in applying to Colleges.
+                    </p>
+                </div>
+            </div>
+
+            <div class="panel p-comps">
+                <h2>Comp_History</h2>
+                <div class="comp-row">
+                    <div>
+                        <div class="comp-name">CPTC 11 Southeast</div>
+                        <div class="comp-detail">Regional</div>
+                    </div>
+                    <div class="comp-rank">N/A</div>
+                </div>
+
+                <div class="comp-row">
+                    <div>
+                        <div class="comp-name">DEFCON CTF '25</div>
+                        <div class="comp-detail">Qualifier</div>
+                    </div>
+                    <div class="comp-rank">89th</div>
+                </div>
+
+                <div class="comp-row">
+                    <div>
+                        <div class="comp-name">CCDC Rocky Mtn '25</div>
+                        <div class="comp-detail">Regional</div>
+                    </div>
+                    <div class="comp-rank text-accent">3RD</div>
+                </div>
+
+                <div class="comp-row">
+                    <div>
+                        <div class="comp-name">CPTC 10 West</div>
+                        <div class="comp-detail">Regional</div>
+                    </div>
+                    <div class="comp-rank">N/A</div>
+                </div>
+
+                <div class="comp-row">
+                    <div>
+                        <div class="comp-name">Deadface CTF</div>
+                        <div class="comp-detail">Global</div>
+                    </div>
+                    <div class="comp-rank">TOP 4%</div>
+                </div>
+
+                <div class="comp-row">
+                    <div>
+                        <div class="comp-name">NCL Fall '24</div>
+                        <div class="comp-detail">Team</div>
+                    </div>
+                    <div class="comp-rank text-accent">TOP 1%</div>
+                </div>
+
+                <div class="comp-row">
+                    <div>
+                        <div class="comp-name">CCDC Rocky Mtn '24</div>
+                        <div class="comp-detail">Regional</div>
+                    </div>
+                    <div class="comp-rank">8TH</div>
                 </div>
             </div>
         </div>
 
-        <footer class="space-grotesk-700">
-            <p>MMXXIV @ BOULDER, CO</p>
-        </footer>
+        <script src="assets/js/script.js"></script>
     </body>
 </html>
