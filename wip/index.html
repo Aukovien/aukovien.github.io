@@ -1,0 +1,872 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Anar Aukovien // Portfolio</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        />
+        <style>
+            :root {
+                --bg-base: #020202;
+                --panel-bg: #0a0a0a;
+                --border: #222;
+                --text-main: #e0e0e0;
+                --text-muted: #888;
+                --accent: #ff0055;
+                --accent-glow: rgba(255, 0, 85, 0.15);
+            }
+            [data-theme="light"] {
+                --bg-base: #f4f4f4;
+                --panel-bg: #ffffff;
+                --border: #ccc;
+                --text-main: #111;
+                --text-muted: #555;
+                --accent: #ff0055;
+                --accent-glow: rgba(255, 0, 85, 0.08);
+            }
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
+            body {
+                background: var(--bg-base);
+                color: var(--text-main);
+                font-family: "Inter", sans-serif;
+                transition:
+                    background 0.3s,
+                    color 0.3s;
+                overflow-x: hidden;
+            }
+            .bg-atmosphere {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background:
+                    radial-gradient(
+                        circle at 80% 10%,
+                        #2a0011 0%,
+                        transparent 45%
+                    ),
+                    radial-gradient(
+                        circle at 15% 90%,
+                        #0a0a1a 0%,
+                        transparent 45%
+                    );
+                opacity: 0.5;
+                z-index: -2;
+                pointer-events: none;
+            }
+            .bg-grid {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image:
+                    linear-gradient(
+                        rgba(255, 255, 255, 0.025) 1px,
+                        transparent 1px
+                    ),
+                    linear-gradient(
+                        90deg,
+                        rgba(255, 255, 255, 0.025) 1px,
+                        transparent 1px
+                    );
+                background-size: 30px 30px;
+                z-index: -1;
+                pointer-events: none;
+            }
+            nav {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                z-index: 100;
+                background: rgba(2, 2, 2, 0.85);
+                backdrop-filter: blur(12px);
+                border-bottom: 1px solid var(--border);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 40px;
+                height: 56px;
+                transition: background 0.3s;
+            }
+            [data-theme="light"] nav {
+                background: rgba(244, 244, 244, 0.88);
+            }
+            .nav-logo {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.85rem;
+                color: var(--text-main);
+                text-decoration: none;
+            }
+            .nav-logo span {
+                color: var(--accent);
+            }
+            .nav-links {
+                display: flex;
+                gap: 30px;
+                list-style: none;
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.72rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            .nav-links a {
+                color: var(--text-muted);
+                text-decoration: none;
+                transition: color 0.2s;
+            }
+            .nav-links a:hover {
+                color: var(--accent);
+            }
+            .nav-right {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+            }
+            .btn-theme {
+                background: transparent;
+                border: 1px solid var(--border);
+                color: var(--text-muted);
+                padding: 6px 14px;
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.65rem;
+                cursor: pointer;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                transition: 0.15s;
+            }
+            .btn-theme:hover {
+                border-color: var(--accent);
+                color: var(--accent);
+            }
+            section {
+                min-height: 100vh;
+                padding: 100px 0 80px;
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+            }
+            .container {
+                width: 90%;
+                max-width: 960px;
+            }
+            .section-label {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.7rem;
+                text-transform: uppercase;
+                letter-spacing: 3px;
+                color: var(--accent);
+                margin-bottom: 10px;
+            }
+            .section-title {
+                font-size: 2.4rem;
+                font-weight: 800;
+                line-height: 1;
+                margin-bottom: 50px;
+                letter-spacing: -1px;
+            }
+            .hero-grid {
+                display: grid;
+                grid-template-columns: 1fr 340px;
+                gap: 50px;
+                align-items: start;
+            }
+            .hero-name {
+                font-size: 3.5rem;
+                font-weight: 800;
+                line-height: 0.95;
+                letter-spacing: -2px;
+                margin-bottom: 12px;
+            }
+            .hero-name .accent {
+                color: var(--accent);
+            }
+            .hero-tagline {
+                font-family: "JetBrains Mono", monospace;
+                color: var(--accent);
+                font-size: 0.85rem;
+                margin-bottom: 28px;
+            }
+            .about-body {
+                font-size: 0.95rem;
+                line-height: 1.75;
+                color: var(--text-muted);
+                margin-bottom: 30px;
+            }
+            .about-body strong {
+                color: var(--text-main);
+            }
+            .about-images {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+            }
+            .img-frame {
+                border: 1px solid var(--border);
+                overflow: hidden;
+                position: relative;
+                transition: border-color 0.2s;
+            }
+            .img-frame:hover {
+                border-color: var(--accent);
+            }
+            .img-frame img {
+                width: 100%;
+                display: block;
+                object-fit: cover;
+            }
+            .resume-embed {
+                border: 1px solid var(--border);
+                width: 100%;
+                height: 680px;
+                background: var(--panel-bg);
+            }
+            .resume-embed embed {
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+            .resume-note {
+                margin-top: 16px;
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.72rem;
+                color: var(--text-muted);
+            }
+            .highlight-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 20px;
+            }
+            .highlight-card {
+                border: 1px solid var(--border);
+                background: var(--panel-bg);
+                overflow: hidden;
+                transition:
+                    border-color 0.2s,
+                    transform 0.2s;
+            }
+            .highlight-card:hover {
+                border-color: var(--accent);
+                transform: translateY(-3px);
+            }
+            .hcard-img {
+                width: 100%;
+                aspect-ratio: 16 / 9;
+                object-fit: cover;
+                display: block;
+            }
+            .hcard-body {
+                padding: 20px;
+            }
+            .hcard-num {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.65rem;
+                color: var(--accent);
+                margin-bottom: 6px;
+                letter-spacing: 2px;
+            }
+            .hcard-title {
+                font-size: 1rem;
+                font-weight: 700;
+                margin-bottom: 10px;
+            }
+            .hcard-desc {
+                font-size: 0.82rem;
+                line-height: 1.6;
+                color: var(--text-muted);
+            }
+            .project-list {
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+            }
+            .project-item {
+                border: 1px solid var(--border);
+                background: var(--panel-bg);
+                padding: 28px;
+                display: grid;
+                grid-template-columns: 1fr auto;
+                gap: 20px;
+                align-items: start;
+                transition: border-color 0.2s;
+            }
+            .project-item:hover {
+                border-color: var(--accent);
+            }
+            .proj-tag {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.65rem;
+                letter-spacing: 2px;
+                color: var(--accent);
+                margin-bottom: 8px;
+                text-transform: uppercase;
+            }
+            .proj-name {
+                font-size: 1.4rem;
+                font-weight: 800;
+                letter-spacing: -0.5px;
+                margin-bottom: 10px;
+            }
+            .proj-desc {
+                font-size: 0.875rem;
+                line-height: 1.65;
+                color: var(--text-muted);
+                margin-bottom: 16px;
+            }
+            .proj-stack {
+                display: flex;
+                gap: 12px;
+                flex-wrap: wrap;
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.68rem;
+                color: var(--text-muted);
+            }
+            .proj-link {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.75rem;
+                color: var(--accent);
+                text-decoration: none;
+                border: 1px solid var(--accent);
+                padding: 8px 16px;
+                transition: 0.15s;
+                white-space: nowrap;
+                align-self: center;
+            }
+            .proj-link:hover {
+                background: var(--accent);
+                color: #fff;
+            }
+            .social-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 20px;
+            }
+            .social-card {
+                border: 1px solid var(--border);
+                background: var(--panel-bg);
+                padding: 24px;
+                text-decoration: none;
+                color: var(--text-main);
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                transition:
+                    border-color 0.2s,
+                    transform 0.2s;
+            }
+            .social-card:hover {
+                border-color: var(--accent);
+                transform: translateY(-3px);
+            }
+            .sc-platform {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.65rem;
+                letter-spacing: 2px;
+                color: var(--accent);
+                text-transform: uppercase;
+            }
+            .sc-handle {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.9rem;
+                font-weight: 700;
+                word-break: break-all;
+            }
+            .sc-desc {
+                font-size: 0.8rem;
+                line-height: 1.6;
+                color: var(--text-muted);
+                flex-grow: 1;
+            }
+            .sc-arrow {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.75rem;
+                color: var(--accent);
+                align-self: flex-end;
+            }
+            footer {
+                border-top: 1px solid var(--border);
+                padding: 30px 40px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.7rem;
+                color: var(--text-muted);
+            }
+            .fade-in {
+                opacity: 0;
+                transform: translateY(24px);
+                transition:
+                    opacity 0.6s ease,
+                    transform 0.6s ease;
+            }
+            .fade-in.visible {
+                opacity: 1;
+                transform: none;
+            }
+            @media (max-width: 800px) {
+                nav {
+                    padding: 0 20px;
+                }
+                .nav-links {
+                    display: none;
+                }
+                .hero-grid {
+                    grid-template-columns: 1fr;
+                }
+                .about-images {
+                    flex-direction: row;
+                }
+                .highlight-grid {
+                    grid-template-columns: 1fr;
+                }
+                .social-grid {
+                    grid-template-columns: 1fr;
+                }
+                .project-item {
+                    grid-template-columns: 1fr;
+                }
+                .container {
+                    width: 94%;
+                }
+                .hero-name {
+                    font-size: 2.5rem;
+                }
+                .section-title {
+                    font-size: 1.8rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="bg-atmosphere"></div>
+        <div class="bg-grid"></div>
+
+        <nav>
+            <a href="#about" class="nav-logo">Anar<span>.</span>Aukovien</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#interests">Interests</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#social">Social</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="btn-theme" onclick="toggleTheme()">
+                    [ Invert ]
+                </button>
+            </div>
+        </nav>
+
+        <!-- 1. ABOUT -->
+        <section id="about">
+            <div class="container">
+                <p class="section-label fade-in">01 // Welcome</p>
+                <div class="hero-grid">
+                    <div>
+                        <h1 class="hero-name fade-in">
+                            Anar<br /><span class="accent">Aukovien</span>
+                        </h1>
+                        <p class="hero-tagline fade-in">
+                            // CURIOUS HOW IT WORKS.
+                        </p>
+                        <div class="about-body fade-in">
+                            <p style="margin-bottom: 16px">
+                                Welcome to my digital portfolio! My name is
+                                Anar, and I am a passionate computer science
+                                student with a deep specialization in
+                                <strong
+                                    >cybersecurity and software
+                                    development</strong
+                                >. My journey into tech has been driven by an
+                                intense curiosity about how systems work, and
+                                more importantly, how they can be secured or
+                                exploited. I actively engage in offensive
+                                security research, which has shaped my mindset
+                                as a problem solver who looks for unconventional
+                                solutions to complex technical challenges.
+                            </p>
+                            <p style="margin-bottom: 16px">
+                                What makes me unique is my blend of low-level
+                                security knowledge and full-stack development
+                                skills. I don't just participate in the infosec
+                                community; I actively
+                                <strong>contribute</strong> to it by developing
+                                my own Capture The Flag (CTF) challenges, such
+                                as <em>Copycat</em> and
+                                <em>Fractured Prophecy</em>. Beyond security, I
+                                have strong hands-on experience in web and
+                                backend development using modern frameworks and
+                                languages like <strong>React and Go</strong>. I
+                                also enjoy the physical side of computing,
+                                frequently building and optimizing custom PC
+                                hardware.
+                            </p>
+                            <p style="margin-bottom: 16px">
+                                The purpose of this digital portfolio is to
+                                provide a comprehensive view of my capabilities
+                                that goes beyond a traditional one-page resume.
+                                It serves as a central hub where visitors can
+                                explore my technical projects, understand my
+                                approach to offensive security, and see the
+                                tangible results of my academic and
+                                extracurricular efforts.
+                            </p>
+                            <p>
+                                On this site you will find my professional
+                                <strong>Resume/CV</strong>, my leadership in the
+                                <strong>CU Cybersecurity Club</strong>,
+                                highlights from major competitions like CCDC and
+                                CPTC, and deep dives into the software and CTF
+                                environments I have engineered. I am currently
+                                an undergraduate at <strong>CU Boulder</strong>,
+                                working toward a career in Security Engineering.
+                                Thank you for visiting, feel free to connect
+                                with me. I promise I won't bite.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="about-images fade-in">
+                        <!-- CHANGE src to your image filename, e.g. src="profile.jpg" -->
+                        <div class="img-frame">
+                            <img
+                                src="profile.jpg"
+                                alt="Professional photo of Anar"
+                            />
+                        </div>
+                        <!-- CHANGE src to your image filename, e.g. src="desk.jpg" -->
+                        <div class="img-frame">
+                            <img
+                                src="interest.jpg"
+                                alt="My workspace / interests"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. RESUME -->
+        <section id="resume">
+            <div class="container">
+                <p class="section-label fade-in">02 // Resume / CV</p>
+                <h2 class="section-title fade-in">
+                    Credentials<span style="color: var(--accent)">.</span>
+                </h2>
+                <!-- Place your PDF in the same folder and update the filename below -->
+                <div class="resume-embed fade-in">
+                    <embed
+                        src="resume.pdf"
+                        type="application/pdf"
+                        width="100%"
+                        height="100%"
+                        title="Anar Enkhzol Resume"
+                    />
+                </div>
+                <p class="resume-note fade-in">
+                    &gt; Place your PDF in the same folder as this file and name
+                    it <code style="color: var(--accent)">resume.pdf</code>
+                    &nbsp;|&nbsp;
+                    <a
+                        href="resume.pdf"
+                        target="_blank"
+                        style="color: var(--accent); text-decoration: none"
+                        >Open full resume &#8599;</a
+                    >
+                </p>
+            </div>
+        </section>
+
+        <!-- 3. INTERESTS -->
+        <section id="interests">
+            <div class="container">
+                <p class="section-label fade-in">
+                    03 // Interests &amp; Extracurricular
+                </p>
+                <h2 class="section-title fade-in">
+                    Highlights<span style="color: var(--accent)">.</span>
+                </h2>
+                <div class="highlight-grid">
+                    <div class="highlight-card fade-in">
+                        <!-- CHANGE src BELOW to your image filename, e.g. src="ccdc.jpg" -->
+                        <img
+                            src="ccdc.jpg"
+                            alt="CU Cybersecurity Club"
+                            class="hcard-img"
+                        />
+                        <div class="hcard-body">
+                            <p class="hcard-num">01 // COMPETITIVE CYBER</p>
+                            <h3 class="hcard-title">CU Cybersecurity Club</h3>
+                            <p class="hcard-desc">
+                                I am heavily involved in the CU Cybersecurity
+                                Club, where I collaborate with peers on complex
+                                security problems. I regularly participate in
+                                major competitive cyber events, including the
+                                CCDC, CPTC, and the National Cyber League. These
+                                high-pressure environments continuously sharpen
+                                my ability to secure networks and respond to
+                                active threats in real time.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="highlight-card fade-in">
+                        <!-- CHANGE src BELOW to your image filename, e.g. src="ctf.jpg" -->
+                        <img
+                            src="offsec.jpg"
+                            alt="Capture The Flag"
+                            class="hcard-img"
+                        />
+                        <div class="hcard-body">
+                            <p class="hcard-num">02 // OFFENSIVE SECURITY</p>
+                            <h3 class="hcard-title">Capture The Flag</h3>
+                            <p class="hcard-desc">
+                                Outside of standard coursework, I dedicate
+                                significant time to offensive security research.
+                                I actively practice on HackTheBox to expand my
+                                penetration testing skills. Beyond just
+                                competing, I also design my own CTF challenges,
+                                Copycat and Fractured Prophecy, to give back to
+                                the infosec community.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="highlight-card fade-in">
+                        <!-- CHANGE src BELOW to your image filename, e.g. src="calisthenics.jpg" -->
+                        <img
+                            src="gym.jpg"
+                            alt="Calisthenics"
+                            class="hcard-img"
+                        />
+                        <div class="hcard-body">
+                            <p class="hcard-num">03 // PHYSICAL DISCIPLINE</p>
+                            <h3 class="hcard-title">Calisthenics</h3>
+                            <p class="hcard-desc">
+                                To balance the hours spent deeply focused on a
+                                computer screen, I am dedicated to calisthenics.
+                                Mastering bodyweight exercises requires immense
+                                discipline, patience, and incremental progress,
+                                traits that directly translate to how I approach
+                                complex computer science concepts. This physical
+                                outlet keeps me grounded and ensures I maintain
+                                a sharp mind.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. PROJECTS -->
+        <section id="projects">
+            <div class="container">
+                <p class="section-label fade-in">
+                    04 // Academic &amp; Projects
+                </p>
+                <h2 class="section-title fade-in">
+                    Work<span style="color: var(--accent)">.</span>
+                </h2>
+                <div class="project-list">
+                    <div class="project-item fade-in">
+                        <div>
+                            <p class="proj-tag">01 // Hackathon Project</p>
+                            <h3 class="proj-name">AudioGPT</h3>
+                            <p class="proj-desc">
+                                During a fast-paced hackathon, I collaborated on
+                                developing AudioGPT, an innovative application
+                                that introduced a
+                                <strong
+                                    >voice interface to large language
+                                    models</strong
+                                >
+                                well before official voice features were widely
+                                available. This project required rapid
+                                prototyping and integrating external APIs under
+                                strict time constraints. It highlights my
+                                ability to anticipate technological trends, work
+                                effectively within a team, and deliver
+                                functional, cutting-edge software solutions
+                                under pressure.
+                            </p>
+                            <div class="proj-stack">
+                                <span>&gt; Python</span
+                                ><span>&gt; OpenAI API</span
+                                ><span>&gt; Audio Processing</span>
+                            </div>
+                        </div>
+                        <a
+                            href="https://github.com/Collisteru/audiogpt"
+                            target="_blank"
+                            class="proj-link"
+                            >VIEW &#8599;</a
+                        >
+                    </div>
+
+                    <div class="project-item fade-in">
+                        <div>
+                            <p class="proj-tag">02 // Systems / Backend</p>
+                            <h3 class="proj-name">bubbl</h3>
+                            <p class="proj-desc">
+                                To expand my backend system programming skills,
+                                I built bubbl, a custom CLI application designed
+                                to log and track
+                                <strong>Spotify listening history</strong> to a
+                                playlist, with duplicate detection and sync
+                                capabilities. I developed this using
+                                <strong>Go (Golang)</strong>
+                                to leverage its strong concurrency model and
+                                efficient performance. Building this required
+                                navigating the Spotify OAuth API, handling data
+                                streams securely, and structuring persistent
+                                information robustly.
+                            </p>
+                            <div class="proj-stack">
+                                <span>&gt; Go</span><span>&gt; Spotify API</span
+                                ><span>&gt; OAuth 2.0</span>
+                            </div>
+                        </div>
+                        <a
+                            href="https://github.com/Aukovien/bubbl"
+                            target="_blank"
+                            class="proj-link"
+                            >VIEW &#8599;</a
+                        >
+                    </div>
+
+                    <div class="project-item fade-in">
+                        <div>
+                            <p class="proj-tag">03 // Tools / UX Engineering</p>
+                            <h3 class="proj-name">AVHUD</h3>
+                            <p class="proj-desc">
+                                Combining my passion for competitive gaming with
+                                software development, I created AVHUD, an
+                                application that captures
+                                <strong
+                                    >real-time audio from video games</strong
+                                >
+                                and translates sound events into intuitive
+                                visual cues on a screen overlay. Designing this
+                                tool involved complex audio processing and
+                                creating a seamless, low-latency interface that
+                                wouldn't disrupt live gameplay. It showcases my
+                                ability to engineer creative, accessible
+                                solutions to real user experience challenges.
+                            </p>
+                            <div class="proj-stack">
+                                <span>&gt; Python</span
+                                ><span>&gt; Audio DSP</span
+                                ><span>&gt; Overlay / GUI</span>
+                            </div>
+                        </div>
+                        <a
+                            href="https://github.com/Aukovien/avhud"
+                            target="_blank"
+                            class="proj-link"
+                            >VIEW &#8599;</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. SOCIAL -->
+        <section id="social">
+            <div class="container">
+                <p class="section-label fade-in">05 // Social Media</p>
+                <h2 class="section-title fade-in">
+                    Connect<span style="color: var(--accent)">.</span>
+                </h2>
+                <div class="social-grid">
+                    <a
+                        href="https://www.linkedin.com/in/anarenkhzol/"
+                        target="_blank"
+                        class="social-card fade-in"
+                    >
+                        <p class="sc-platform">LinkedIn</p>
+                        <p class="sc-handle">linkedin.com/in/anarenkhzol</p>
+                        <p class="sc-desc">
+                            Where you can find my work history, competition
+                            results, and professional connections. I post about
+                            cybersecurity events, leadership in the CU
+                            Cybersecurity Club, and anything else worth sharing
+                            with the infosec community.
+                        </p>
+                        <span class="sc-arrow">VIEW &#8599;</span>
+                    </a>
+
+                    <a
+                        href="https://github.com/aukovien"
+                        target="_blank"
+                        class="social-card fade-in"
+                    >
+                        <p class="sc-platform">GitHub</p>
+                        <p class="sc-handle">github.com/aukovien</p>
+                        <p class="sc-desc">
+                            All my projects live here. You can dig into the
+                            source for bubbl, AVHUD, AudioGPT, and whatever else
+                            I'm currently building. The commit history is pretty
+                            honest about how I actually work.
+                        </p>
+                        <span class="sc-arrow">VIEW &#8599;</span>
+                    </a>
+
+                    <a
+                        href="https://app.hackthebox.com/public/users/1459139"
+                        target="_blank"
+                        class="social-card fade-in"
+                    >
+                        <p class="sc-platform">HackTheBox</p>
+                        <p class="sc-handle">HTB Profile</p>
+                        <p class="sc-desc">
+                            A running record of the machines and challenges I
+                            have solved. If you want to see where my pentesting
+                            skills actually stand, this is probably the most
+                            direct way to check.
+                        </p>
+                        <span class="sc-arrow">VIEW &#8599;</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <span>ANAR AUKOVIEN // WIP PORTFOLIO</span>
+            <span style="color: var(--accent)">&#169; 2026</span>
+        </footer>
+
+        <script>
+            function toggleTheme() {
+                const html = document.documentElement;
+                if (html.getAttribute("data-theme") === "light") {
+                    html.removeAttribute("data-theme");
+                } else {
+                    html.setAttribute("data-theme", "light");
+                }
+            }
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((e) => {
+                        if (e.isIntersecting) e.target.classList.add("visible");
+                    });
+                },
+                { threshold: 0.1 },
+            );
+            document
+                .querySelectorAll(".fade-in")
+                .forEach((el) => observer.observe(el));
+        </script>
+    </body>
+</html>
