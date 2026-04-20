@@ -448,6 +448,48 @@
                     font-size: 1.8rem;
                 }
             }
+            .comp-table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            .comp-row {
+                display: grid;
+                grid-template-columns: 1fr auto auto;
+                align-items: center;
+                gap: 20px;
+                padding: 14px 0;
+                border-bottom: 1px solid var(--border);
+                transition: color 0.2s;
+            }
+            .comp-row:hover {
+                color: var(--accent);
+                cursor: default;
+            }
+            .comp-name {
+                font-weight: 600;
+                font-size: 0.9rem;
+            }
+            .comp-detail {
+                font-size: 0.75rem;
+                color: var(--text-muted);
+                margin-top: 2px;
+            }
+            .comp-scope {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.7rem;
+                color: var(--text-muted);
+                text-align: right;
+            }
+            .comp-rank {
+                font-family: "JetBrains Mono", monospace;
+                font-weight: 700;
+                font-size: 0.9rem;
+                text-align: right;
+                min-width: 70px;
+            }
+            .comp-rank.highlight {
+                color: var(--accent);
+            }
         </style>
     </head>
     <body>
@@ -461,6 +503,7 @@
                 <li><a href="#resume">Resume</a></li>
                 <li><a href="#interests">Interests</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#competitions">Competitions</a></li>
                 <li><a href="#social">Social</a></li>
             </ul>
             <div class="nav-right">
@@ -778,10 +821,87 @@
             </div>
         </section>
 
-        <!-- 5. SOCIAL -->
+        <!-- 5. COMPETITIONS -->
+        <section id="competitions">
+            <div class="container">
+                <p class="section-label fade-in">05 // Competitions</p>
+                <h2 class="section-title fade-in">
+                    Results<span style="color: var(--accent)">.</span>
+                </h2>
+
+                <div class="fade-in">
+                    <div class="comp-row">
+                        <div>
+                            <div class="comp-name">CCDC Rocky Mountain</div>
+                            <div class="comp-detail">2026</div>
+                        </div>
+                        <span class="comp-scope">Regional</span>
+                        <span class="comp-rank highlight">1ST</span>
+                    </div>
+                    <div class="comp-row">
+                        <div>
+                            <div class="comp-name">CPTC 11 Southeast</div>
+                            <div class="comp-detail">2025</div>
+                        </div>
+                        <span class="comp-scope">Regional</span>
+                        <span class="comp-rank">N/A</span>
+                    </div>
+                    <div class="comp-row">
+                        <div>
+                            <div class="comp-name">DEFCON CTF</div>
+                            <div class="comp-detail">2025 Qualifier</div>
+                        </div>
+                        <span class="comp-scope">Global</span>
+                        <span class="comp-rank">89TH</span>
+                    </div>
+                    <div class="comp-row">
+                        <div>
+                            <div class="comp-name">CCDC Rocky Mountain</div>
+                            <div class="comp-detail">2025</div>
+                        </div>
+                        <span class="comp-scope">Regional</span>
+                        <span class="comp-rank highlight">3RD</span>
+                    </div>
+                    <div class="comp-row">
+                        <div>
+                            <div class="comp-name">CPTC 10 West</div>
+                            <div class="comp-detail">2024</div>
+                        </div>
+                        <span class="comp-scope">Regional</span>
+                        <span class="comp-rank">N/A</span>
+                    </div>
+                    <div class="comp-row">
+                        <div>
+                            <div class="comp-name">Deadface CTF</div>
+                            <div class="comp-detail">2024</div>
+                        </div>
+                        <span class="comp-scope">Global</span>
+                        <span class="comp-rank">TOP 4%</span>
+                    </div>
+                    <div class="comp-row">
+                        <div>
+                            <div class="comp-name">NCL Fall</div>
+                            <div class="comp-detail">2024 Team</div>
+                        </div>
+                        <span class="comp-scope">National</span>
+                        <span class="comp-rank highlight">TOP 1%</span>
+                    </div>
+                    <div class="comp-row">
+                        <div>
+                            <div class="comp-name">CCDC Rocky Mountain</div>
+                            <div class="comp-detail">2024</div>
+                        </div>
+                        <span class="comp-scope">Regional</span>
+                        <span class="comp-rank">8TH</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. SOCIAL -->
         <section id="social">
             <div class="container">
-                <p class="section-label fade-in">05 // Social Media</p>
+                <p class="section-label fade-in">06 // Social Media</p>
                 <h2 class="section-title fade-in">
                     Connect<span style="color: var(--accent)">.</span>
                 </h2>
@@ -839,7 +959,7 @@
         </section>
 
         <footer>
-            <span>ANAR ENKHZOL // WIP PORTFOLIO</span>
+            <span>ANAR ENKHZOL // PORTFOLIO</span>
             <span style="color: var(--accent)">&#169; 2026</span>
         </footer>
 
