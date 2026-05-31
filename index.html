@@ -1,233 +1,342 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Aukovien</title>
-        <link rel="stylesheet" href="assets/css/style.css" />
-    </head>
-    <body>
-        <div class="bg-atmosphere"></div>
-        <div class="bg-grid"></div>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anar Enkhzol</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@300;400;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
 
-        <div class="grid-container">
-            <div class="panel p-sidebar">
-                <div>
-                    <div class="sidebar-avatar">
-                        <div class="avatar-inner">
-                            <img
-                                src="assets/img/pfp.jpg"
-                                class="avatar-img"
-                                alt="Profile Picture"
-                            />
-                        </div>
-                    </div>
+<!-- <div id="splash">
+    <div class="splash-name">Anar <em>&middot;</em> Enkhzol</div>
+    <div class="bar-track"><div class="bar-fill"></div></div>
+    <div class="splash-label">loading</div>
+</div> -->
 
-                    <div class="hero-name">
-                        Anar<br /><span class="text-accent">Aukovien</span>
-                    </div>
-                    <p class="tagline">// CURIOUS HOW IT WORKS.</p>
-                    <!--<br />AND HOW IT BREAKS.-->
+<div id="dot"></div>
+<div id="ring"></div>
+<div id="popup"></div>
 
-                    <p class="bio-text">
-                        Undergrad @ <strong>CU Boulder</strong>.
-                        Working towards a career in Security Engineering.
-                        I specialize in <strong>C & Python</strong> with a focus on web exploit and reverse engineering.
-                    </p>
-                </div>
+<div id="secret-screen">
+    <div class="secret-big">You found it!!!</div>
+    <p class="secret-words">
+        Congrats on knowing the Konami code.<br><br>
+        Here's a joke: In order for fungi to grow you need to give it as mushroom as possible c:<br><br>
+        <span style="color:var(--rust);font-style:italic;">(hehe)</span>
+    </p>
+    <button class="secret-close" onclick="closeSecret()">[ esc ] close</button>
+</div>
 
-                <div class="contact-section">
-                    <h3 class="mono section-header">CONTACT</h3>
+<nav class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    <a href="#project" onclick="closeMobileNav()">Project</a>
+    <a href="#experience" onclick="closeMobileNav()">Experience</a>
+    <a href="#competitions" onclick="closeMobileNav()">Competitions</a>
+    <a href="#writing" onclick="closeMobileNav()">Writing</a>
+    <a href="#contact" onclick="closeMobileNav()">Contact</a>
+</nav>
+<header>
+    <div class="header-inner">
+        <a href="#" class="logo">Anar Enkhzol</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#project">Project</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#competitions">Competitions</a></li>
+                <li><a href="#writing">Writing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
 
-                    <a
-                        href="https://github.com/aukovien"
-                        target="_blank"
-                        class="terminal-link"
-                    >
-                        <span class="cmd-arrow">&gt</span> github.com/aukovien
-                    </a>
+<div class="right-now">
+    <div class="now-inner">
+        <span class="now-label">Currently</span>
+        <span class="now-slash">//</span>
+        <span class="now-text" id="now-text">loading...</span>
+    </div>
+</div>
 
-                    <a
-                        href="https://linkedin.com/in/anarenkhzol"
-                        target="_blank"
-                        class="terminal-link"
-                    >
-                        <span class="cmd-arrow">&gt</span> linkedin.com/in/anarenkhzol
-                    </a>
+<section class="intro">
+    <div class="col">
+        <div class="intro-eyebrow fadeup">
+            Security Engineering · CU Boulder
+        </div>
 
-                    <a
-                        href="https://aukovien.com/blog"
-                        target="_blank"
-                        class="terminal-link"
-                    >
-                        <span class="cmd-arrow">&gt</span> blog
-                    </a>
+        <div class="big-name fadeup fadeup-late" id="big-name">
+            Anar Enkhzol
+        </div>
 
-                    <button class="btn-invert" onclick="toggleTheme()">
-                        Invert Visuals
-                    </button>
-                </div>
+        <div class="also-known fadeup fadeup-later">
+            aka <span class="the-alias" id="the-alias">Aukovien</span>
+        </div>
+
+        <hr class="intro-rule">
+
+        <div class="intro-body">
+            <div class="about-me fadeup">
+                <p>I'm Anar. <strong>Bachelor's degree in Computer Science, CU Boulder</strong>. 
+                I work full-time in enterprise IT at the university as a 
+                <strong>Dedicated Desktop Support Professional</strong>.</p>
+                <br>
+                <p>Outside of that I'm a <strong>Security Researcher</strong>. 
+                I'm into web exploit, reverse engineering, & CTF competitions. 
+                Mainly <strong>C++ & Rust</strong>, occasionally Go when I'm building something for myself.</p>
+                <span class="motto">
+                    // CURIOUS HOW IT WORKS.
+                    <span class="motto-break"> AND HOW IT BREAKS.</span>
+                </span>
             </div>
 
-            <div class="panel p-project">
-                <h2>
-                    <span>Latest Project</span>
-                    <a
-                        href="https://github.com/Aukovien/bubbl"
-                        target="_blank"
-                        class="text-accent"
-                        >VIEW&#8599</a
-                    >
-                    <!--<span class="text-accent">• ACTIVE</span>-->
-                </h2>
-
-                <div class="project-card">
-                    <div class="project-info">
-                        <h1 class="project-title">bubbl</h1>
-                        <p class="project-desc">
-                            A Command Line Spotify monitoring tool that saves
-                            your listening history to a playlist. Syncs to
-                            capture missed songs and ensures the list remains
-                            duplicate-free.
-                        </p>
-                        <div class="mono tech-stack">
-                            <span class="tech-item">&gt Go</span>
-                            <span class="tech-item">&gt Spotify API</span>
-                        </div>
-                    </div>
-
-                    <div class="project-visual">
-                        <img src="assets/img/bubbl.gif" class="project-img" alt="bubbl demo" />
-                    </div>
+            <div class="stat-strip fadeup fadeup-late">
+                <div class="stat-row">
+                    <div class="big-num">Holo</div>
+                    <div class="num-label">Tier · Season 10 · HackTheBox</div>
                 </div>
-            </div>
-
-            <div class="panel p-work">
-                <h2>
-                    <span>Experience</span>
-                    <a href="./work/" class="text-accent" >ALL&#8599</a>
-                </h2>
-
-                <div class="job-item">
-                    <span class="job-company">Dedicated Desktop Support</span>
-                    <div class="job-role">Student Lead Technician</div>
-                    <span class="job-date">July 2023 - Present</span>
-                    <p class="job-desc">
-                        Led a team of student technicians in providing
-                        comprehensive hardware and software troubleshooting.
-                        Acted as an escalation point for resolving complex
-                        technical issues to maintain service standards.
-                    </p>
-                </div>
-
-                <div class="job-item">
-                    <span class="job-company">UpToStudy</span>
-                    <div class="job-role">Web Developer Intern</div>
-                    <span class="job-date">Aug 2025 - Oct 2025</span>
-                    <p class="job-desc">
-                        Developed a responsive landing page and optimized
-                        backend PHP logic for user data handling. Configured a
-                        PM2 routing system to efficiently manage subdomain
-                        traffic.
-                    </p>
-                </div>
-
-                <div class="job-item">
-                    <span class="job-company">CU Cybersecurity Club</span>
-                    <div class="job-role">Director</div>
-                    <span class="job-date">Aug 2024 - Present</span>
-                    <p class="job-desc">
-                        Did recruitment, competition lead, and funding
-                        management.
-                    </p>
-                </div>
-
-                <div class="job-item">
-                    <span class="job-company">Capture The Flame</span>
-                    <div class="job-role">Board / Challenge Creator</div>
-                    <span class="job-date">Oct 2024 - Present</span>
-                    <p class="job-desc">Created Crypto & Misc challenges.</p>
-                </div>
-
-                <div class="job-item">
-                    <span class="job-company">Sant Academy</span>
-                    <div class="job-role">Web Developer Intern</div>
-                    <span class="job-date">June 2019 - June 2020</span>
-                    <p class="job-desc">
-                        Developed a ReactJS platform to assist High School
-                        students in applying to Colleges.
-                    </p>
-                </div>
-            </div>
-
-            <div class="panel p-comps">
-                <h2>Comp_History</h2>
-		<div class="comp-row">
-		    <div>
-			<div class="comp-name">CCDC Rocky Mtn '26</div>
-                        <div class="comp-detail">Regional</div>
-	            </div>
-		    <div class="comp-rank text-accent">1ST</div>
-		</div>
-
-                <div class="comp-row">
-                    <div>
-                        <div class="comp-name">CPTC 11 Southeast</div>
-                        <div class="comp-detail">Regional</div>
-                    </div>
-                    <div class="comp-rank">N/A</div>
-                </div>
-
-                <div class="comp-row">
-                    <div>
-                        <div class="comp-name">DEFCON CTF '25</div>
-                        <div class="comp-detail">Qualifier</div>
-                    </div>
-                    <div class="comp-rank">89th</div>
-                </div>
-
-                <div class="comp-row">
-                    <div>
-                        <div class="comp-name">CCDC Rocky Mtn '25</div>
-                        <div class="comp-detail">Regional</div>
-                    </div>
-                    <div class="comp-rank text-accent">3RD</div>
-                </div>
-
-                <div class="comp-row">
-                    <div>
-                        <div class="comp-name">CPTC 10 West</div>
-                        <div class="comp-detail">Regional</div>
-                    </div>
-                    <div class="comp-rank">N/A</div>
-                </div>
-
-                <div class="comp-row">
-                    <div>
-                        <div class="comp-name">Deadface CTF</div>
-                        <div class="comp-detail">Global</div>
-                    </div>
-                    <div class="comp-rank">TOP 4%</div>
-                </div>
-
-                <div class="comp-row">
-                    <div>
-                        <div class="comp-name">NCL Fall '24</div>
-                        <div class="comp-detail">Team</div>
-                    </div>
-                    <div class="comp-rank text-accent">TOP 1%</div>
-                </div>
-
-                <div class="comp-row">
-                    <div>
-                        <div class="comp-name">CCDC Rocky Mtn '24</div>
-                        <div class="comp-detail">Regional</div>
-                    </div>
-                    <div class="comp-rank">8TH</div>
+                <div class="stat-row">
+                    <div class="big-num" data-target="1" data-suffix="ST">—</div>
+                    <div class="num-label">CCDC Rocky Mtn '26</div>
                 </div>
             </div>
         </div>
+    </div>
+</section>
 
-        <script src="assets/js/script.js"></script>
-    </body>
+<section class="page-section" id="project">
+    <div class="col">
+        <div class="section-head-row fadeup">
+            <div>
+                <div class="section-label">Featured Work</div>
+                <div class="section-title">Latest Project</div>
+            </div>
+            <a href="https://github.com/Aukovien/bubbl" target="_blank" class="section-link">View on GitHub</a>
+        </div>
+
+        <div class="project-study fadeup fadeup-late">
+            <div class="project-words">
+                <div class="project-kicker">CLI Tool &middot; Go &middot; Spotify API</div>
+                <div class="project-name">bubbl</div>
+                <p class="project-about">
+                    A command-line tool that monitors your Spotify listening and
+                    automatically saves everything to a playlist. Syncs on startup
+                    to catch whatever you played offline, and keeps the list
+                    completely duplicate-free.
+                    <br><br>
+                    Built because I kept losing half-remembered songs with nowhere
+                    to find them. Classic scratch-your-own-itch project.
+                </p>
+                <div class="tags">
+                    <span class="tag">Go</span>
+                    <span class="tag">Spotify API</span>
+                    <span class="tag">CLI</span>
+                </div>
+                <a href="https://github.com/Aukovien/bubbl" target="_blank" class="view-btn">
+                    View Source ↗
+                </a>
+            </div>
+
+            <div>
+                <div class="fake-terminal">
+                    <div class="terminal-top">
+                        <div class="dot" style="background:#ff5f57"></div>
+                        <div class="dot" style="background:#febc2e"></div>
+                        <div class="dot" style="background:#28c840"></div>
+                    </div>
+                    <div class="terminal-lines">
+                        <div><span class="go">$</span> <span class="muted">bubbl start</span></div>
+                        <div class="muted">› connecting to Spotify...</div>
+                        <div class="muted">› auth successful ✓</div>
+                        <div class="muted">› syncing missed history...</div>
+                        <div><span class="go">  + 12 tracks added</span></div>
+                        <div class="muted">› duplicates found: 0</div>
+                        <div class="muted" style="font-style:italic;opacity:0.65">  // nice. clean run.</div>
+                        <div><span class="go">$</span> <span class="blinky"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="page-section" id="experience">
+    <div class="col">
+        <div class="section-head-row fadeup">
+            <div>
+                <div class="section-label">Background</div>
+                <div class="section-title">Experience</div>
+            </div>
+            <a href="./work/" class="section-link">Full History</a>
+        </div>
+
+        <div class="job-list fadeup fadeup-late">
+            <div class="job still-here">
+                <div class="job-header">
+                    <div class="what-i-did">Dedicated Desktop Support Professional</div>
+                    <div class="where">CU Boulder · OIT</div>
+                    <div class="when">Jul 2023 – Present</div>
+                </div>
+                <p class="job-words">Enterprise IT across the university — hardware, software, and the complex multi-system failures that get escalated up the chain. I'm the person they call when the standard playbook doesn't cover it.</p>
+            </div>
+
+            <div class="job still-here">
+                <div class="job-header">
+                    <div class="what-i-did">Board of Directors</div>
+                    <div class="where">CU Cybersecurity Club</div>
+                    <div class="when">Aug 2024 – Present</div>
+                </div>
+                <p class="job-words">Recruiting, competition team lead, funding management. Building a community of people who are just as curious about breaking things as I am.</p>
+            </div>
+
+            <div class="job still-here">
+                <div class="job-header">
+                    <div class="what-i-did">Board / Challenge Creator</div>
+                    <div class="where">Capture The Flame</div>
+                    <div class="when">Oct 2024 – Present</div>
+                </div>
+                <p class="job-words">Writing Crypto & Misc challenges for the CTF. There's something deeply satisfying about designing a puzzle that gives someone that "aha" moment.
+                <span class="job-note">// if my challenges made you suffer, that was intentional. affectionately.</span></p>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="what-i-did">Web Developer Intern</div>
+                    <div class="where">UpToStudy</div>
+                    <div class="when">Aug – Oct 2025</div>
+                </div>
+                <p class="job-words">Responsive landing page, PHP backend optimisation, PM2 routing for subdomain traffic.</p>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="what-i-did">Web Developer Intern</div>
+                    <div class="where">Sant Academy</div>
+                    <div class="when">Jun 2019 – Jun 2020</div>
+                </div>
+                <p class="job-words">Built a ReactJS platform to help high schoolers navigate college applications. My first real deployed product.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="page-section" id="competitions">
+    <div class="col">
+        <div class="fadeup">
+            <div class="section-label">Record</div>
+            <div class="section-title">Competitions</div>
+            <div class="section-note"></div>
+        </div>
+
+        <div class="comp-log fadeup fadeup-late">
+            <div class="comp-entry">
+                <div class="placement great-one">1ST</div>
+                <div class="comp-right">
+                    <div class="comp-title">CCDC Rocky Mtn '26</div>
+                    <div class="comp-info">Regional</div>
+                </div>
+            </div>
+            <div class="comp-entry">
+                <div class="placement good-one">1%</div>
+                <div class="comp-right">
+                    <div class="comp-title">NCL Fall '24</div>
+                    <div class="comp-info">Team Game &middot; Top 1%</div>
+                </div>
+            </div>
+            <div class="comp-entry">
+                <div class="placement">4%</div>
+                <div class="comp-right">
+                    <div class="comp-title">Deadface CTF</div>
+                    <div class="comp-info">Top 4%</div>
+                </div>
+            </div>
+            <div class="comp-entry">
+                <div class="placement">89TH</div>
+                <div class="comp-right">
+                    <div class="comp-title">DEFCON CTF '25</div>
+                    <div class="comp-info">Qualifier</div>
+                </div>
+            </div>
+            <div class="comp-entry">
+                <div class="placement">3RD</div>
+                <div class="comp-right">
+                    <div class="comp-title">CCDC Rocky Mtn '25</div>
+                    <div class="comp-info">Regional</div>
+                </div>
+            </div>
+            <div class="comp-entry">
+                <div class="placement" style="font-size:32px;padding-top:8px">N/A</div>
+                <div class="comp-right">
+                    <div class="comp-title">CPTC 10 & 11</div>
+                    <div class="comp-info">West + Southeast Regional</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="page-section" id="writing">
+    <div class="col">
+        <div class="fadeup">
+            <div class="section-label">Output</div>
+            <div class="section-title">Writing</div>
+            <div class="section-note">// documenting what I find</div>
+        </div>
+
+        <div class="write-list fadeup fadeup-late">
+            <div class="write-entry">
+                <div class="write-tag">CTF Write-up</div>
+                <div class="write-title">—</div>
+                <div class="write-status">// coming soon</div>
+            </div>
+            <div class="write-entry">
+                <div class="write-tag">Research Note</div>
+                <div class="write-title">—</div>
+                <div class="write-status">// in progress</div>
+            </div>
+            <div class="write-entry">
+                <div class="write-tag">Misc</div>
+                <div class="write-title">—</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact-block" id="contact">
+    <div class="col">
+        <div class="contact-name fadeup">
+            Let's<br><span>Connect.</span>
+        </div>
+        <p class="contact-sub fadeup fadeup-late">I respond fast. I promise I won't bite.</p>
+        <div class="contact-links fadeup fadeup-late">
+            <a href="https://github.com/aukovien" target="_blank" class="reach-link">
+                <span class="arr">→</span> github.com/aukovien
+            </a>
+            <a href="https://linkedin.com/in/anarenkhzol" target="_blank" class="reach-link">
+                <span class="arr">→</span> linkedin.com/in/anarenkhzol
+            </a>
+            <a href="https://app.hackthebox.com/public/users/1459139" target="_blank" class="reach-link">
+                <span class="arr">→</span> hackthebox.com
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer class="bottom-bar">
+    <div class="bottom-bar-inner">
+        <span>&copy; 2025 Anar Enkhzol</span>
+        <span class="secret-hint" title="you know what this is">↑↑↓↓←→←→BA</span>
+        <span>CU BOULDER &middot; BOULDER, CO</span>
+    </div>
+</footer>
+
+<script src="assets/js/script.js"></script>
+</body>
 </html>
