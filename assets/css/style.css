@@ -1,18 +1,13 @@
-/* ============================================================
-   Anar Enkhzol — portfolio
-   Type: JetBrains Mono only (mono display system)
-   ============================================================ */
-
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
     --bg:         #0f0d0a;
     --fg:         #ede5d3;
-    --faded:      #c4b7a0;   /* lifted from #9a8e78 -> 9.8:1 */
-    --faded-dim:  #9a8d76;   /* lifted from #6a5e4e -> 6.0:1 (now AA for body) */
-    --amber:      #d4922f;   /* lifted from #c8892c -> 7.4:1 */
+    --faded:      #c4b7a0; 
+    --faded-dim:  #9a8d76;  
+    --amber:      #d4922f;
     --amber-warm: #eab14a;
-    --rust:       #cf6d44;   /* lifted from #b85c38 -> 5.5:1 */
+    --rust:       #cf6d44; 
     --line:       #211b13;
     --line-mid:   #322619;
 }
@@ -625,14 +620,6 @@ header {
 .aside-card {
     background: var(--bg);
     padding: 28px 30px;
-}
-
-.aside-kicker {
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--amber);
-    margin-bottom: 12px;
 }
 
 .aside-title {
