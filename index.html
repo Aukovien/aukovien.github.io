@@ -7,18 +7,12 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@300;400;600&family=DM+Serif+Display:ital@0;1&display=swap"
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap"
             rel="stylesheet"
         />
         <link rel="stylesheet" href="assets/css/style.css" />
     </head>
     <body>
-        <!-- <div id="splash">
-    <div class="splash-name">Anar <em>&middot;</em> Enkhzol</div>
-    <div class="bar-track"><div class="bar-fill"></div></div>
-    <div class="splash-label">loading</div>
-</div> -->
-
         <div id="dot"></div>
         <div id="ring"></div>
         <div id="popup"></div>
@@ -43,6 +37,7 @@
             <a href="#experience" onclick="closeMobileNav()">Experience</a>
             <a href="#competitions" onclick="closeMobileNav()">Competitions</a>
             <a href="#writing" onclick="closeMobileNav()">Writing</a>
+            <a href="#offhours" onclick="closeMobileNav()">Off-Hours</a>
             <a href="#contact" onclick="closeMobileNav()">Contact</a>
         </nav>
         <header>
@@ -54,6 +49,7 @@
                         <li><a href="#experience">Experience</a></li>
                         <li><a href="#competitions">Competitions</a></li>
                         <li><a href="#writing">Writing</a></li>
+                        <li><a href="#offhours">Off-Hours</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </nav>
@@ -80,22 +76,22 @@
 
         <section class="intro">
             <div class="col">
-                <div class="intro-eyebrow fadeup">
+                <div class="intro-eyebrow">
                     Security Engineering · CU Boulder
                 </div>
 
-                <div class="big-name fadeup fadeup-late" id="big-name">
+                <div class="big-name" id="big-name">
                     Anar Enkhzol
                 </div>
 
-                <div class="also-known fadeup fadeup-later">
-                    aka <span class="the-alias" id="the-alias">Aukovien</span>
+                <div class="also-known">
+                    aka <span class="the-alias" id="the-alias" tabindex="0">Aukovien</span>
                 </div>
 
                 <hr class="intro-rule" />
 
                 <div class="intro-body">
-                    <div class="about-me fadeup">
+                    <div class="about-me">
                         <p>
                             I'm Anar.
                             <strong
@@ -122,7 +118,7 @@
                         </span>
                     </div>
 
-                    <div class="stat-strip fadeup fadeup-late">
+                    <div class="stat-strip">
                         <div class="stat-row">
                             <div class="big-num">Holo</div>
                             <div class="num-label">
@@ -146,7 +142,7 @@
 
         <section class="page-section" id="project">
             <div class="col">
-                <div class="section-head-row fadeup">
+                <div class="section-head-row">
                     <div>
                         <div class="section-label">Featured Work</div>
                         <div class="section-title">Latest Project</div>
@@ -159,7 +155,7 @@
                     >
                 </div>
 
-                <div class="project-study fadeup fadeup-late">
+                <div class="project-study">
                     <div class="project-words">
                         <div class="project-kicker">
                             CLI Tool &middot; Go &middot; Spotify API
@@ -234,7 +230,7 @@
 
         <section class="page-section" id="experience">
             <div class="col">
-                <div class="section-head-row fadeup">
+                <div class="section-head-row">
                     <div>
                         <div class="section-label">Background</div>
                         <div class="section-title">Experience</div>
@@ -242,97 +238,106 @@
                     <a href="./work/" class="section-link">Full History</a>
                 </div>
 
-                <div class="job-list fadeup fadeup-late">
-                    <div class="job">
-                        <div class="job-header">
-                            <div class="what-i-did">
-                                Dedicated Desktop Support Professional
+                <div class="job-list">
+                    <div class="job-group">
+                        <div class="job-group-label">IT &amp; Support</div>
+
+                        <div class="job still-here">
+                            <div class="job-header">
+                                <div class="what-i-did">
+                                    Dedicated Desktop Support Professional
+                                </div>
+                                <div class="where">CU Boulder &middot; OIT</div>
+                                <div class="when">May 2026 – Present</div>
                             </div>
-                            <div class="where">CU Boulder &middot; OIT</div>
-                            <div class="when">May 2026 – Present</div>
+                            <p class="job-words">
+                                Providing dedicated IT support for seven
+                                university departments, managing their daily
+                                hardware, software, and access needs.
+                            </p>
                         </div>
-                        <p class="job-words">
-                            Providing dedicated IT support for seven university
-                            departments, managing their daily hardware,
-                            software, and access needs.
-                        </p>
-                    </div>
 
-                    <div class="job still-here">
-                        <div class="job-header">
-                            <div class="what-i-did">
-                                Student Technician Lead
+                        <div class="job">
+                            <div class="job-header">
+                                <div class="what-i-did">
+                                    Student Technician &rarr; Lead Technician
+                                </div>
+                                <div class="where">CU Boulder &middot; OIT</div>
+                                <div class="when">Jul 2023 – May 2026</div>
                             </div>
-                            <div class="where">CU Boulder &middot; OIT</div>
-                            <div class="when">July 2023 – May 2026</div>
+                            <p class="job-words">
+                                Started on the support desk troubleshooting
+                                Windows and macOS issues and handling setup
+                                tasks for faculty. Promoted to Lead in Jan
+                                2025, taking on Tier 2 escalations, managing
+                                Active Directory group access, and mentoring
+                                new hires.
+                            </p>
                         </div>
-                        <p class="job-words">
-                            Led a team of student technicians in providing
-                            comprehensive hardware and software support.
-                            Resolved technical tickets and provided assistance
-                            for managed Windows and macOS devices while
-                            mentoring new hires on standard protocols.
-                        </p>
                     </div>
 
-                    <div class="job still-here">
-                        <div class="job-header">
-                            <div class="what-i-did">Board of Directors</div>
-                            <div class="where">CU Cybersecurity Club</div>
-                            <div class="when">Aug 2024 – May 2026</div>
-                        </div>
-                        <p class="job-words">
-                            Organizing club activities and leading our
-                            competition teams. Managing recruitment and funding
-                            to help build a collaborative environment for
-                            students interested in security research.
-                        </p>
-                    </div>
+                    <div class="job-group">
+                        <div class="job-group-label">Security &amp; Community</div>
 
-                    <div class="job">
-                        <div class="job-header">
-                            <div class="what-i-did">
-                                Board / Challenge Creator
+                        <div class="job">
+                            <div class="job-header">
+                                <div class="what-i-did">Board of Directors</div>
+                                <div class="where">CU Cybersecurity Club</div>
+                                <div class="when">Aug 2024 – May 2026</div>
                             </div>
-                            <div class="where">Capture The Flame</div>
-                            <div class="when">Oct 2024 – Present</div>
+                            <p class="job-words">
+                                Organizing club activities and leading our
+                                competition teams. Managing recruitment and
+                                funding to help build a collaborative environment
+                                for students interested in security research.
+                            </p>
                         </div>
-                        <p class="job-words">
-                            Developing cryptography and miscellaneous puzzles
-                            for Capture The Flame competitions. Focusing on
-                            creating engaging and educational scenarios for
-                            participants.
-                            <span class="job-note"
-                                >// if my challenges made you suffer, that was
-                                intentional. affectionately.</span
-                            >
-                        </p>
+
+                        <div class="job still-here">
+                            <div class="job-header">
+                                <div class="what-i-did">
+                                    Board / Challenge Creator
+                                </div>
+                                <div class="where">Capture The Flame</div>
+                                <div class="when">Mar 2025 – Present</div>
+                            </div>
+                            <p class="job-words">
+                                Developing cryptography and miscellaneous puzzles
+                                for Capture The Flame competitions. Focusing on
+                                creating engaging and educational scenarios for
+                                participants.
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="job still-here">
-                        <div class="job-header">
-                            <div class="what-i-did">Web Developer Intern</div>
-                            <div class="where">UpToStudy</div>
-                            <div class="when">Aug – Oct 2025</div>
-                        </div>
-                        <p class="job-words">
-                            Developed a responsive landing page and optimized
-                            PHP backend logic. Configured PM2 routing to handle
-                            subdomain traffic efficiently.
-                        </p>
-                    </div>
+                    <div class="job-group">
+                        <div class="job-group-label">Web Development</div>
 
-                    <div class="job still-here">
-                        <div class="job-header">
-                            <div class="what-i-did">Web Developer Intern</div>
-                            <div class="where">Sant Academy</div>
-                            <div class="when">Jun 2019 – Jun 2020</div>
+                        <div class="job still-here">
+                            <div class="job-header">
+                                <div class="what-i-did">Web Developer Intern</div>
+                                <div class="where">UpToStudy</div>
+                                <div class="when">Aug – Oct 2025</div>
+                            </div>
+                            <p class="job-words">
+                                Developed a responsive landing page and optimized
+                                PHP backend logic. Configured PM2 routing to
+                                handle subdomain traffic efficiently.
+                            </p>
                         </div>
-                        <p class="job-words">
-                            Assisted in building a ReactJS web platform designed
-                            to help high schoolers navigate their college
-                            applications.
-                        </p>
+
+                        <div class="job still-here">
+                            <div class="job-header">
+                                <div class="what-i-did">Web Developer Intern</div>
+                                <div class="where">Sant Academy</div>
+                                <div class="when">Jun 2019 – Jun 2020</div>
+                            </div>
+                            <p class="job-words">
+                                Assisted in building a ReactJS web platform
+                                designed to help high schoolers navigate their
+                                college applications.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -340,13 +345,12 @@
 
         <section class="page-section" id="competitions">
             <div class="col">
-                <div class="fadeup">
+                <div class="section-head">
                     <div class="section-label">Record</div>
                     <div class="section-title">Competitions</div>
-                    <div class="section-note"></div>
                 </div>
 
-                <div class="comp-log fadeup fadeup-late">
+                <div class="comp-log">
                     <div class="comp-entry">
                         <div class="placement great-one">1ST</div>
                         <div class="comp-right">
@@ -358,9 +362,7 @@
                         <div class="placement good-one">1%</div>
                         <div class="comp-right">
                             <div class="comp-title">NCL Fall '24</div>
-                            <div class="comp-info">
-                                Team Game &middot; Top 1%
-                            </div>
+                            <div class="comp-info">Team Game &middot; Top 1%</div>
                         </div>
                     </div>
                     <div class="comp-entry">
@@ -385,17 +387,10 @@
                         </div>
                     </div>
                     <div class="comp-entry">
-                        <div
-                            class="placement"
-                            style="font-size: 32px; padding-top: 8px"
-                        >
-                            N/A
-                        </div>
+                        <div class="placement">N/A</div>
                         <div class="comp-right">
                             <div class="comp-title">CPTC 10 & 11</div>
-                            <div class="comp-info">
-                                West + Southeast Regional
-                            </div>
+                            <div class="comp-info">West + Southeast Regional</div>
                         </div>
                     </div>
                 </div>
@@ -404,26 +399,57 @@
 
         <section class="page-section" id="writing">
             <div class="col">
-                <div class="fadeup">
-                    <div class="section-label">Output</div>
-                    <div class="section-title">Writing</div>
-                    <div class="section-note">// documenting what I find</div>
+                <div class="section-head-row">
+                    <div>
+                        <div class="section-label">Output</div>
+                        <div class="section-title">Writing</div>
+                    </div>
+                    <a
+                        href="https://www.aukovien.com/blog/"
+                        target="_blank"
+                        class="section-link"
+                        >Read the Blog</a
+                    >
                 </div>
 
-                <div class="write-list fadeup fadeup-late">
-                    <div class="write-entry">
-                        <div class="write-tag">CTF Write-up</div>
-                        <div class="write-title">—</div>
-                        <div class="write-status">// coming soon</div>
+                <div class="write-list">
+                    <a
+                        class="write-entry live"
+                        href="https://www.aukovien.com/blog/posts/htb-logging/"
+                        target="_blank"
+                    >
+                        <div class="write-tag">HTB Write-up</div>
+                        <div class="write-title">Logging (Windows Medium)</div>
+                        <div class="write-status">// partial &middot; box active</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="page-section" id="offhours">
+            <div class="col">
+                <div class="section-head">
+                    <div class="section-label">Personal</div>
+                    <div class="section-title">Off the Clock</div>
+                </div>
+
+                <div class="aside-grid">
+                    <div class="aside-card">
+                        <div class="aside-title">Cooking</div>
+                        <p class="aside-words">
+                            Most nights I'm cooking something from scratch. I
+                            read a recipe the way I read a spec: once, fully,
+                            then I ignore the parts I disagree with.
+                        </p>
                     </div>
-                    <div class="write-entry">
-                        <div class="write-tag">Research Note</div>
-                        <div class="write-title">—</div>
-                        <div class="write-status">// in progress</div>
-                    </div>
-                    <div class="write-entry">
-                        <div class="write-tag">Misc</div>
-                        <div class="write-title">—</div>
+
+                    <div class="aside-card">
+                        <div class="aside-title">Sim Racing</div>
+                        <p class="aside-words">
+                            Dirt Rally 2.0 on a wheel and pedals. Usually
+                            sideways on a wet hillside at 6am, going slightly
+                            faster than is advisable.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -431,13 +457,13 @@
 
         <section class="contact-block" id="contact">
             <div class="col">
-                <div class="contact-name fadeup">
+                <div class="contact-name">
                     Let's<br /><span>Connect.</span>
                 </div>
-                <p class="contact-sub fadeup fadeup-late">
+                <p class="contact-sub">
                     I respond fast. I promise I won't bite.
                 </p>
-                <div class="contact-links fadeup fadeup-late">
+                <div class="contact-links">
                     <a
                         href="https://github.com/aukovien"
                         target="_blank"
@@ -465,7 +491,7 @@
 
         <footer class="bottom-bar">
             <div class="bottom-bar-inner">
-                <span>&copy; 2025 Anar Enkhzol</span>
+                <span>&copy; 2026 Anar Enkhzol</span>
                 <span class="secret-hint" title="you know what this is"
                     >↑↑↓↓←→←→BA</span
                 >

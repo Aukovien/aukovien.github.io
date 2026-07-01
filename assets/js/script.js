@@ -1,11 +1,3 @@
-// window.addEventListener('load', () => {
-//     const splash = document.getElementById('splash');
-//     setTimeout(() => {
-//         splash.classList.add('gone');
-//         setTimeout(() => splash.remove(), 640);
-//     }, 1500);
-// });
-
 const dot = document.getElementById("dot");
 const ring = document.getElementById("ring");
 let mx = 0,
@@ -41,7 +33,7 @@ document.querySelectorAll("a, button").forEach((el) => {
     dot.style.height = "8px";
     ring.style.width = "32px";
     ring.style.height = "32px";
-    ring.style.opacity = "0.35";
+    ring.style.opacity = "0.4";
   });
 });
 
@@ -70,6 +62,14 @@ if (theAlias) {
   theAlias.addEventListener("click", () => {
     showPopup(aliasLines[Math.min(aliasClicks, aliasLines.length - 1)]);
     aliasClicks++;
+  });
+  // keyboard parity for the easter egg
+  theAlias.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      showPopup(aliasLines[Math.min(aliasClicks, aliasLines.length - 1)]);
+      aliasClicks++;
+    }
   });
 }
 
@@ -101,19 +101,18 @@ document.addEventListener("keydown", (e) => {
         : 0;
   if (konamiIdx === konamiSeq.length) {
     const secret = document.getElementById("secret-screen");
-    if (secret) secret.classList.add("showing"); // Added safety check here
+    if (secret) secret.classList.add("showing");
     konamiIdx = 0;
   }
 });
 
 function closeSecret() {
   const secret = document.getElementById("secret-screen");
-  if (secret) secret.classList.remove("showing"); // Added safety check here
+  if (secret) secret.classList.remove("showing");
 }
 
 const secretScreen = document.getElementById("secret-screen");
 if (secretScreen) {
-  // Added safety wrapper
   secretScreen.addEventListener("click", (e) => {
     if (e.target === e.currentTarget) closeSecret();
   });
@@ -123,7 +122,6 @@ const hamburger = document.getElementById("hamburger");
 const mobileNav = document.getElementById("mobile-nav");
 
 if (hamburger && mobileNav) {
-  // Added safety wrapper
   hamburger.addEventListener("click", () => {
     const isOpen = hamburger.classList.toggle("open");
     mobileNav.classList.toggle("open");
@@ -135,7 +133,6 @@ if (hamburger && mobileNav) {
 
 function closeMobileNav() {
   if (hamburger && mobileNav) {
-    // Added safety wrapper
     hamburger.classList.remove("open");
     mobileNav.classList.remove("open");
     hamburger.setAttribute("aria-expanded", "false");
@@ -143,17 +140,6 @@ function closeMobileNav() {
     document.body.style.overflow = "";
   }
 }
-
-const watcher = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) e.target.classList.add("shown");
-    });
-  },
-  { threshold: 0.08 },
-);
-
-document.querySelectorAll(".fadeup").forEach((el) => watcher.observe(el));
 
 const numWatcher = new IntersectionObserver(
   (entries) => {
@@ -188,6 +174,9 @@ const statusLines = [
   "debugging someone else's PHP. praying.",
   "convinced this binary has feelings and is hiding something",
   "staring at assembly and pretending to understand it immediately",
+  "trying to shave two seconds off a stage in dirt rally. failing.",
+  "reducing a sauce and a stack trace at the same time",
+  "arguing with a co-driver who is, annoyingly, always right",
 ];
 
 const nowEl = document.getElementById("now-text");

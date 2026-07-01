@@ -1,15 +1,20 @@
+/* ============================================================
+   Anar Enkhzol — portfolio
+   Type: JetBrains Mono only (mono display system)
+   ============================================================ */
+
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
     --bg:         #0f0d0a;
     --fg:         #ede5d3;
-    --faded:      #9a8e78;
-    --faded-dim:  #6a5e4e;
-    --amber:      #c8892c;
-    --amber-warm: #e8a840;
-    --rust:       #b85c38;
-    --line:       #1e1912;
-    --line-mid:   #2e2318;
+    --faded:      #c4b7a0;   /* lifted from #9a8e78 -> 9.8:1 */
+    --faded-dim:  #9a8d76;   /* lifted from #6a5e4e -> 6.0:1 (now AA for body) */
+    --amber:      #d4922f;   /* lifted from #c8892c -> 7.4:1 */
+    --amber-warm: #eab14a;
+    --rust:       #cf6d44;   /* lifted from #b85c38 -> 5.5:1 */
+    --line:       #211b13;
+    --line-mid:   #322619;
 }
 
 html { scroll-behavior: smooth; }
@@ -25,6 +30,15 @@ body {
 
 @media (pointer: fine) { body { cursor: none; } }
 
+/* keyboard focus must stay visible even though the cursor is hidden */
+a:focus-visible,
+button:focus-visible,
+.the-alias:focus-visible {
+    outline: 2px solid var(--amber-warm);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
 body::before {
     content: '';
     position: fixed;
@@ -32,9 +46,10 @@ body::before {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 1000;
-    opacity: 0.5;
+    opacity: 0.45;
 }
 
+/* ---------- custom cursor ---------- */
 #dot {
     position: fixed;
     width: 8px; height: 8px;
@@ -56,60 +71,10 @@ body::before {
     z-index: 9998;
     transform: translate(-50%, -50%);
     transition: width 0.2s, height 0.2s, opacity 0.3s;
-    opacity: 0.35;
+    opacity: 0.4;
 }
 
-#splash {
-    position: fixed;
-    inset: 0;
-    background: var(--bg);
-    z-index: 99999;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 28px;
-    transition: opacity 0.6s ease;
-}
-
-#splash.gone { opacity: 0; pointer-events: none; }
-
-.splash-name {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    font-size: clamp(24px, 5vw, 52px);
-    color: var(--fg);
-    letter-spacing: -0.01em;
-}
-
-.splash-name em { color: var(--amber); font-style: normal; }
-
-.bar-track {
-    width: 120px;
-    height: 1px;
-    background: var(--line-mid);
-    position: relative;
-    overflow: hidden;
-}
-
-.bar-fill {
-    position: absolute;
-    top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, var(--rust), var(--amber), var(--amber-warm));
-    animation: loadbar 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes loadbar { 0% { left: -100%; } 100% { left: 0%; } }
-
-.splash-label {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--faded);
-    opacity: 0.5;
-}
-
+/* ---------- toast ---------- */
 #popup {
     position: fixed;
     bottom: 32px;
@@ -130,6 +95,7 @@ body::before {
 
 #popup.showing { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+/* ---------- konami secret ---------- */
 #secret-screen {
     position: fixed;
     inset: 0;
@@ -147,9 +113,10 @@ body::before {
 #secret-screen.showing { opacity: 1; pointer-events: all; }
 
 .secret-big {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    font-size: clamp(44px, 9vw, 100px);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: clamp(40px, 8vw, 88px);
+    letter-spacing: -0.04em;
     color: var(--amber);
     line-height: 1;
     text-align: center;
@@ -179,6 +146,7 @@ body::before {
 
 .secret-close:hover { color: var(--amber); border-color: var(--amber); }
 
+/* ---------- header ---------- */
 header {
     position: sticky;
     top: 0;
@@ -198,15 +166,15 @@ header {
 }
 
 .logo {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    font-size: 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 16px;
     color: var(--fg);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
     text-decoration: none;
 }
 
-.nav-links { display: flex; gap: 8px; list-style: none; }
+.nav-links { display: flex; gap: 4px; list-style: none; }
 
 .nav-links a {
     color: var(--faded);
@@ -215,13 +183,13 @@ header {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     transition: color 0.2s;
-
     display: inline-block;
-    padding: 4px 14px;
+    padding: 4px 12px;
 }
 
 .nav-links a:hover { color: var(--amber); }
 
+/* ---------- live status bar ---------- */
 .right-now {
     border-bottom: 1px solid var(--line);
     background: var(--bg);
@@ -260,18 +228,14 @@ header {
     transition: opacity 0.4s;
 }
 
+/* ---------- shared layout ---------- */
 .col {
     max-width: 920px;
     margin: 0 auto;
     padding: 0 48px;
 }
 
-.divider {
-    border: none;
-    border-top: 1px solid var(--line);
-    margin: 0;
-}
-
+/* ---------- intro ---------- */
 .intro {
     padding-top: 40px;
     padding-bottom: 72px;
@@ -290,17 +254,14 @@ header {
     display: flex;
     align-items: center;
     gap: 14px;
-    opacity: 0.85;
 }
 
-.intro-eyebrow::after { display: none; }
-
 .big-name {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    font-size: clamp(42px, 7.5vw, 108px);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: clamp(40px, 7vw, 100px);
     line-height: 1.0;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.045em;
     margin-bottom: 20px;
 }
 
@@ -314,7 +275,7 @@ header {
 .the-alias {
     color: var(--amber);
     cursor: none;
-    border-bottom: 1px dashed rgba(200,137,44,0.35);
+    border-bottom: 1px dashed rgba(212,146,47,0.4);
     transition: color 0.2s;
     user-select: none;
 }
@@ -350,21 +311,11 @@ header {
     letter-spacing: 0.03em;
     border-left: 2px solid var(--amber);
     padding-left: 14px;
-    opacity: 0.75;
 }
 
 .motto-break { color: var(--rust); }
 
-.little-note {
-    display: block;
-    margin-top: 10px;
-    padding-left: 16px;
-    font-size: 11px;
-    color: var(--faded);
-    opacity: 0.6;
-    font-style: italic;
-}
-
+/* ---------- intro stat strip ---------- */
 .stat-strip {
     display: flex;
     flex-direction: column;
@@ -381,8 +332,11 @@ header {
 }
 
 .big-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 38px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    font-size: 24px;
+    letter-spacing: -0.03em;
     color: var(--amber);
     line-height: 1;
     flex-shrink: 0;
@@ -395,21 +349,7 @@ header {
     text-transform: uppercase;
 }
 
-.ghost-bg {
-    position: absolute;
-    right: 0; bottom: -20px;
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    font-size: clamp(160px, 24vw, 300px);
-    color: transparent;
-    -webkit-text-stroke: 1px var(--line-mid);
-    line-height: 1;
-    pointer-events: none;
-    user-select: none;
-    z-index: 1;
-    opacity: 0.5;
-}
-
+/* ---------- generic section ---------- */
 .page-section {
     border-bottom: 1px solid var(--line);
     background: var(--bg);
@@ -424,23 +364,18 @@ header {
     text-transform: uppercase;
     color: var(--amber);
     margin-bottom: 8px;
-    opacity: 0.7;
 }
 
 .section-title {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    font-size: 40px;
-    line-height: 1;
-    letter-spacing: -0.01em;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 38px;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
     margin-bottom: 6px;
 }
 
-.section-note {
-    font-size: 11px;
-    color: var(--faded);
-    font-style: italic;
-    opacity: 0.45;
+.section-head {
     margin-bottom: 44px;
 }
 
@@ -468,14 +403,13 @@ header {
 .section-link:hover { gap: 11px; }
 .section-link::after { content: '↗'; }
 
+/* ---------- project ---------- */
 .project-study {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 56px;
     align-items: start;
 }
-
-.project-words { }
 
 .project-kicker {
     font-size: 10px;
@@ -486,20 +420,12 @@ header {
 }
 
 .project-name {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    font-size: 72px;
-    line-height: 0.9;
-    letter-spacing: -0.02em;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 68px;
+    line-height: 0.95;
+    letter-spacing: -0.05em;
     margin-bottom: 14px;
-}
-
-.project-quip {
-    font-size: 11px;
-    color: var(--faded);
-    font-style: italic;
-    opacity: 0.55;
-    margin-bottom: 22px;
 }
 
 .project-about {
@@ -531,7 +457,7 @@ header {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     font-family: 'JetBrains Mono', monospace;
     transition: background 0.2s, gap 0.2s;
 }
@@ -574,14 +500,27 @@ header {
 
 @keyframes blink { 50% { opacity: 0; } }
 
+/* ---------- experience ---------- */
 .job-list { display: flex; flex-direction: column; }
 
+.job-group:not(:first-child) { margin-top: 26px; }
+
+.job-group-label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--amber);
+    padding-bottom: 6px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid var(--line-mid);
+}
+
 .job {
-    padding: 32px 0;
+    padding: 22px 0;
     border-bottom: 1px solid var(--line);
 }
 
-.job:first-child { border-top: 1px solid var(--line); }
+.job-group .job:last-child { border-bottom: none; }
 
 .job-header {
     display: flex;
@@ -592,14 +531,18 @@ header {
 }
 
 .what-i-did {
-    font-family: 'DM Serif Display', serif;
-    font-size: 22px;
-    line-height: 1.1;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
     color: var(--fg);
     margin-right: 16px;
 }
 
-.job.still-here .what-i-did { color: var(--amber); }
+/* current roles keep the bright default; past roles recede instead
+   of trying to make "current" louder than the page's own baseline */
+.job:not(.still-here) .what-i-did { color: var(--faded-dim); }
 
 .where {
     font-size: 11px;
@@ -623,62 +566,91 @@ header {
     max-width: 680px;
 }
 
-.job-note {
-    display: block;
-    margin-top: 10px;
-    font-size: 11px;
-    color: var(--faded);
-    opacity: 0.65;
-    font-style: italic;
+/* ---------- competitions (compact 2-up grid) ---------- */
+.comp-log {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 40px;
+    border-top: 1px solid var(--line);
 }
-
-.comp-log { display: flex; flex-direction: column; }
 
 .comp-entry {
     display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 32px;
-    padding: 28px 0;
+    grid-template-columns: 60px 1fr;
+    gap: 16px;
+    align-items: center;
+    padding: 14px 0;
     border-bottom: 1px solid var(--line);
-    align-items: baseline;
 }
 
-.comp-entry:first-child { border-top: 1px solid var(--line); }
-
 .placement {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 48px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    font-size: 23px;
     line-height: 1;
+    letter-spacing: -0.04em;
     color: var(--faded-dim);
+    text-align: right;
 }
 
 .placement.good-one { color: var(--amber); }
 .placement.great-one { color: var(--amber-warm); }
 
-.comp-right { }
-
 .comp-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.01em;
     color: var(--fg);
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
 .comp-info {
-    font-size: 11px;
-    letter-spacing: 0.1em;
+    font-size: 10px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--faded);
 }
 
-.comp-aside {
-    font-size: 11px;
-    color: var(--faded);
-    opacity: 0.65;
-    font-style: italic;
-    margin-top: 6px;
+/* ---------- off the clock (cooking / sim racing) ---------- */
+.aside-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
 }
 
+.aside-card {
+    background: var(--bg);
+    padding: 28px 30px;
+}
+
+.aside-kicker {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 12px;
+}
+
+.aside-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+}
+
+.aside-words {
+    color: var(--faded);
+    font-size: 13px;
+    line-height: 1.85;
+    margin-bottom: 0;
+}
+
+/* ---------- writing ---------- */
 .write-list { display: flex; flex-direction: column; }
 
 .write-entry {
@@ -688,6 +660,8 @@ header {
     padding: 26px 0;
     border-bottom: 1px solid var(--line);
     align-items: baseline;
+    text-decoration: none;
+    color: inherit;
 }
 
 .write-entry:first-child { border-top: 1px solid var(--line); }
@@ -697,25 +671,30 @@ header {
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--amber);
-    opacity: 0.7;
 }
 
 .write-title {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    font-size: 20px;
-    color: var(--fg);
-    opacity: 0.5;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    color: var(--faded-dim);
 }
+
+/* a "live" entry is an actual clickable post — title reads bright
+   by default and lights up amber on hover, same language the rest
+   of the site already uses for links */
+.write-entry.live .write-title { color: var(--fg); transition: color 0.2s; }
+.write-entry.live:hover .write-title { color: var(--amber); }
 
 .write-status {
     font-size: 10px;
-    color: var(--faded);
+    color: var(--faded-dim);
     font-style: italic;
-    opacity: 0.65;
     white-space: nowrap;
 }
 
+/* ---------- contact ---------- */
 .contact-block {
     border-bottom: 1px solid var(--line);
     background: var(--bg);
@@ -725,11 +704,11 @@ header {
 }
 
 .contact-name {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    font-size: clamp(44px, 7vw, 86px);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: clamp(44px, 6.5vw, 82px);
     line-height: 1;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.05em;
     margin-bottom: 12px;
 }
 
@@ -757,6 +736,7 @@ header {
 .reach-link:hover { color: var(--amber); gap: 16px; }
 .arr { color: var(--amber); }
 
+/* ---------- footer ---------- */
 .bottom-bar {
     background: var(--bg);
     position: relative;
@@ -775,18 +755,14 @@ header {
     letter-spacing: 0.1em;
 }
 
-.secret-hint { opacity: 0.5; font-style: italic; transition: opacity 0.3s; }
-.secret-hint:hover { opacity: 0.8; }
-
-.fadeup { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.fadeup.shown { opacity: 1; transform: none; }
-.fadeup-late { transition-delay: 0.1s; }
-.fadeup-later { transition-delay: 0.22s; }
+.secret-hint { opacity: 0.7; font-style: italic; transition: opacity 0.3s; }
+.secret-hint:hover { opacity: 1; }
 
 @media (pointer: coarse) {
     #dot, #ring { display: none; }
 }
 
+/* ---------- mobile nav ---------- */
 .hamburger {
     display: none;
     flex-direction: column;
@@ -825,7 +801,7 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 32px;
+    gap: 28px;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.28s ease;
@@ -835,12 +811,12 @@ header {
 .mobile-nav.open { opacity: 1; pointer-events: all; }
 
 .mobile-nav a {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    font-size: 38px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: -0.03em;
     color: var(--faded);
     text-decoration: none;
-    letter-spacing: -0.01em;
     transition: color 0.2s;
     min-height: 44px;
     display: flex;
@@ -849,6 +825,7 @@ header {
 
 .mobile-nav a:hover, .mobile-nav a:active { color: var(--amber); }
 
+/* ---------- responsive ---------- */
 @media (max-width: 768px) {
     .header-inner { padding: 16px 20px; }
     .hamburger { display: flex; }
@@ -861,17 +838,15 @@ header {
 
     .intro { padding: 36px 0 44px; }
     .intro-eyebrow { margin-bottom: 24px; font-size: 10px; }
-    .intro-eyebrow::after { display: none; }
-    .big-name { font-size: clamp(54px, 13vw, 148px); margin-bottom: 14px; }
+    .big-name { font-size: clamp(44px, 12vw, 60px); margin-bottom: 14px; }
     .also-known { margin-bottom: 32px; font-size: 11px; }
     .intro-rule { margin-bottom: 32px; }
     .intro-body { grid-template-columns: 1fr; gap: 32px; }
-    .ghost-bg { display: none; }
     .stat-strip { display: grid; grid-template-columns: 1fr 1fr; }
 
     .page-section { padding: 40px 0; }
-    .section-title { font-size: 30px; }
-    .section-note { margin-bottom: 24px; font-size: 10px; }
+    .section-title { font-size: 28px; }
+    .section-head { margin-bottom: 24px; }
     .section-head-row { flex-direction: column; align-items: flex-start; gap: 10px; margin-bottom: 28px; }
 
     .project-study { grid-template-columns: 1fr; gap: 28px; }
@@ -879,15 +854,20 @@ header {
     .fake-terminal { position: static; }
     .view-btn { width: 100%; justify-content: center; }
 
-    .job { padding: 22px 0; }
+    .job { padding: 20px 0; }
+    .job-group:not(:first-child) { margin-top: 20px; }
     .job-header { flex-direction: column; gap: 4px; margin-bottom: 10px; }
     .when { text-align: left; }
     .job-words { max-width: 100%; }
-    .what-i-did { margin-right: 0; font-size: 19px; }
+    .what-i-did { margin-right: 0; font-size: 18px; }
 
-    .comp-entry { grid-template-columns: 68px 1fr; gap: 16px; padding: 20px 0; }
-    .placement { font-size: 34px; }
-    .comp-title { font-size: 17px; }
+    .comp-log { grid-template-columns: 1fr; column-gap: 0; }
+    .comp-entry { grid-template-columns: 52px 1fr; gap: 14px; padding: 13px 0; }
+    .placement { font-size: 21px; }
+    .comp-title { font-size: 15px; }
+
+    .aside-grid { grid-template-columns: 1fr; }
+    .aside-card { padding: 24px 22px; }
 
     .write-entry { grid-template-columns: 1fr; gap: 4px; padding: 18px 0; }
     .write-status { display: none; }
@@ -898,4 +878,15 @@ header {
 
     .bottom-bar-inner { flex-direction: column; gap: 8px; text-align: center; padding: 16px 20px; }
     .secret-hint { display: none; }
+}
+
+/* ---------- respect reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+    #dot, #ring { display: none !important; }
 }
