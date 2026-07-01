@@ -5,7 +5,6 @@
     position: relative;
     z-index: 3;
 }
-
 .work-eyebrow {
     font-size: 11px;
     letter-spacing: 0.18em;
@@ -14,37 +13,31 @@
     margin-bottom: 16px;
     opacity: 0.85;
 }
-
 .work-title {
-    font-family: "DM Serif Display", serif;
-    font-style: italic;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 500;
     font-size: clamp(44px, 8vw, 96px);
     line-height: 0.95;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.045em;
 }
-
 .work-body {
     background: var(--bg);
     position: relative;
     z-index: 3;
     padding: 0;
 }
-
 .work-list {
     display: flex;
     flex-direction: column;
 }
-
 .work-entry {
     padding: 40px 0;
     border-bottom: 1px solid var(--line);
 }
-
 .work-entry:first-child {
     border-top: 1px solid var(--line);
     margin-top: 48px;
 }
-
 .work-top {
     display: flex;
     align-items: center;
@@ -52,7 +45,6 @@
     margin-bottom: 16px;
     flex-wrap: wrap;
 }
-
 .work-status {
     font-family: "JetBrains Mono", monospace;
     font-size: 9px;
@@ -62,37 +54,33 @@
     border: 1px solid;
     flex-shrink: 0;
 }
-
 .work-status.active {
     color: var(--amber);
     border-color: rgba(200, 137, 44, 0.35);
     background: rgba(200, 137, 44, 0.06);
 }
-
 .work-status.done {
     color: var(--faded);
     border-color: var(--line-mid);
 }
-
 .work-status.archived {
     color: var(--faded-dim);
     border-color: var(--line);
 }
-
 .work-date {
     font-size: 11px;
     color: var(--faded);
     margin-left: auto;
 }
-
 .work-role {
-    font-family: "DM Serif Display", serif;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 600;
     font-size: 26px;
+    letter-spacing: -0.02em;
     color: var(--fg);
     line-height: 1.1;
     margin-bottom: 6px;
 }
-
 .work-company {
     font-size: 11px;
     letter-spacing: 0.1em;
@@ -100,7 +88,6 @@
     color: var(--faded);
     margin-bottom: 20px;
 }
-
 .work-desc {
     color: var(--faded);
     font-size: 13px;
@@ -108,7 +95,6 @@
     margin-bottom: 20px;
     max-width: 680px;
 }
-
 .work-bullets {
     list-style: none;
     display: flex;
@@ -117,7 +103,6 @@
     margin-bottom: 0;
     max-width: 680px;
 }
-
 .work-bullets li {
     font-size: 13px;
     color: var(--faded);
@@ -125,7 +110,6 @@
     padding-left: 22px;
     position: relative;
 }
-
 .work-bullets li::before {
     content: "\2192";
     position: absolute;
@@ -134,14 +118,12 @@
     opacity: 0.5;
     font-family: "JetBrains Mono", monospace;
 }
-
 .work-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 7px;
     margin-top: 24px;
 }
-
 @media (max-width: 768px) {
     .work-hero {
         padding: 28px 0 36px;
