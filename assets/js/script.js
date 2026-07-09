@@ -167,7 +167,6 @@ document
   .forEach((el) => numWatcher.observe(el));
 
 const statusLines = [
-  "probably reverse-engineering something I shouldn't be",
   "still fuming about gradimages charging 100 for my grad pics",
   "wondering why this segfault only happens on the third run",
   "saying 'good question' to a question I don't have the answer to",
