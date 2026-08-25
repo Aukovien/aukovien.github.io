@@ -1,15 +1,49 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* ---------- palette ---------- */
+
 :root {
-    --bg:         #0f0d0a;
-    --fg:         #ede5d3;
-    --faded:      #c4b7a0; 
-    --faded-dim:  #9a8d76;  
-    --amber:      #d4922f;
-    --amber-warm: #eab14a;
-    --rust:       #cf6d44; 
-    --line:       #211b13;
-    --line-mid:   #322619;
+    --bg:         #12160f;
+    --sunk:       #0d100b;   /* terminal */
+    --raised:     #1a2016;   /* cards */
+    --fg:         #e6e8de;
+    --faded:      #bcc2b2;
+    --faded-dim:  #9aa18e;
+    --amber:      #74c6ab;   /* structural */
+    --amber-warm: #9bd8c3;
+    --rust:       #eabc4e;   /* accent */
+    --line:       #1e2618;
+    --line-mid:   #29321f;
+
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body:    'Fira Sans', system-ui, sans-serif;
+    --font-mono:    'Fira Mono', ui-monospace, monospace;
+
+    --measure: 62ch;
+}
+
+:root[data-ground="light"] {
+    --bg:         #f2f2ec;
+    --sunk:       #e7e8df;
+    --raised:     #fafaf5;
+    --fg:         #181b15;
+    --faded:      #4e5347;
+    --faded-dim:  #63685a;
+    --amber:      #1d5c4a;
+    --amber-warm: #124134;
+    --rust:       #8a5a0c;
+    --line:       #e3e5da;
+    --line-mid:   #d6d8cb;
+}
+
+.big-name,
+.section-title,
+.project-name,
+.contact-name,
+.secret-big,
+.work-title,
+.aside-title {
+    font-variation-settings: 'SOFT' 30, 'WONK' 1, 'opsz' 120;
 }
 
 html { scroll-behavior: smooth; }
@@ -17,56 +51,18 @@ html { scroll-behavior: smooth; }
 body {
     background: var(--bg);
     color: var(--fg);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-body);
     font-size: 14px;
     line-height: 1.75;
     overflow-x: hidden;
 }
 
-@media (pointer: fine) { body { cursor: none; } }
-
-/* keyboard focus must stay visible even though the cursor is hidden */
 a:focus-visible,
 button:focus-visible,
 .the-alias:focus-visible {
     outline: 2px solid var(--amber-warm);
     outline-offset: 3px;
     border-radius: 2px;
-}
-
-body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 1000;
-    opacity: 0.45;
-}
-
-/* ---------- custom cursor ---------- */
-#dot {
-    position: fixed;
-    width: 8px; height: 8px;
-    background: var(--amber);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s;
-    mix-blend-mode: difference;
-}
-
-#ring {
-    position: fixed;
-    width: 32px; height: 32px;
-    border: 1px solid var(--amber);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s, opacity 0.3s;
-    opacity: 0.4;
 }
 
 /* ---------- toast ---------- */
@@ -94,7 +90,7 @@ body::before {
 #secret-screen {
     position: fixed;
     inset: 0;
-    background: rgba(15,13,10,0.97);
+    background: color-mix(in srgb, var(--bg) 97%, transparent);
     z-index: 9996;
     display: flex;
     flex-direction: column;
@@ -108,7 +104,7 @@ body::before {
 #secret-screen.showing { opacity: 1; pointer-events: all; }
 
 .secret-big {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-display);
     font-weight: 600;
     font-size: clamp(40px, 8vw, 88px);
     letter-spacing: -0.04em;
@@ -120,11 +116,24 @@ body::before {
 .secret-words {
     color: var(--faded);
     font-size: 13px;
-    margin-top: 20px;
+    margin: 0;
     text-align: center;
     max-width: 380px;
-    line-height: 1.95;
+    line-height: 1.6;
 }
+
+.secret-big + .secret-words { margin-top: 32px; }
+.secret-words + .secret-words { margin-top: 10px; }
+
+.secret-link {
+    color: var(--rust);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: color 0.2s;
+}
+
+.secret-link:hover { color: var(--amber-warm); }
 
 .secret-close {
     margin-top: 32px;
@@ -132,10 +141,10 @@ body::before {
     background: none;
     color: var(--faded);
     padding: 9px 22px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: 0.12em;
-    cursor: none;
+    cursor: pointer;
     transition: color 0.2s, border-color 0.2s;
 }
 
@@ -146,7 +155,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(15,13,10,0.94);
+    background: color-mix(in srgb, var(--bg) 94%, transparent);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--line);
 }
@@ -161,7 +170,7 @@ header {
 }
 
 .logo {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-display);
     font-weight: 700;
     font-size: 16px;
     color: var(--fg);
@@ -183,6 +192,30 @@ header {
 }
 
 .nav-links a:hover { color: var(--amber); }
+
+/* ---------- ground toggle ---------- */
+.ground-toggle {
+    background: none;
+    border: 1px solid var(--line-mid);
+    color: var(--faded);
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1;
+    width: 30px;
+    height: 30px;
+    margin-left: 12px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.ground-toggle:hover { color: var(--amber); border-color: var(--amber); }
+
+@media (pointer: coarse) {
+    .ground-toggle { width: 44px; height: 44px; font-size: 15px; }
+}
 
 /* ---------- live status bar ---------- */
 .right-now {
@@ -211,7 +244,7 @@ header {
     flex-shrink: 0;
 }
 
-.now-label::before { content: '● '; animation: pulse 2.4s ease-in-out infinite; }
+.now-label::before { content: '\25CF\A0'; animation: pulse 2.4s ease-in-out infinite; }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.25} }
 
 .now-slash { color: var(--faded-dim); flex-shrink: 0; }
@@ -241,9 +274,8 @@ header {
 }
 
 .intro-eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-size: 12.5px;
+    letter-spacing: 0.01em;
     color: var(--amber);
     margin-bottom: 32px;
     display: flex;
@@ -252,7 +284,7 @@ header {
 }
 
 .big-name {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-display);
     font-weight: 500;
     font-size: clamp(40px, 7vw, 100px);
     line-height: 1.0;
@@ -269,8 +301,8 @@ header {
 
 .the-alias {
     color: var(--amber);
-    cursor: none;
-    border-bottom: 1px dashed rgba(212,146,47,0.4);
+    cursor: pointer;
+    border-bottom: 1px dashed color-mix(in srgb, var(--amber) 40%, transparent);
     transition: color 0.2s;
     user-select: none;
 }
@@ -291,12 +323,15 @@ header {
 }
 
 .about-me {
-    font-size: 14px;
-    line-height: 1.95;
-    color: var(--faded);
+    font-size: 15px;
+    line-height: 1.72;
+    color: var(--fg);
+    max-width: 62ch;
 }
 
-.about-me strong { color: var(--fg); font-weight: 600; }
+.about-me p:first-of-type { font-size: 16.5px; line-height: 1.62; }
+
+.about-me strong { font-weight: 600; }
 
 .motto {
     display: block;
@@ -327,7 +362,7 @@ header {
 }
 
 .big-num {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-display);
     font-weight: 600;
     font-variant-numeric: tabular-nums;
     font-size: 24px;
@@ -338,10 +373,9 @@ header {
 }
 
 .num-label {
-    font-size: 10px;
+    font-size: 11.5px;
     color: var(--faded);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    letter-spacing: 0.01em;
 }
 
 /* ---------- generic section ---------- */
@@ -353,16 +387,8 @@ header {
     padding: 64px 0;
 }
 
-.section-label {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--amber);
-    margin-bottom: 8px;
-}
-
 .section-title {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-display);
     font-weight: 600;
     font-size: 38px;
     line-height: 1.05;
@@ -373,6 +399,8 @@ header {
 .section-head {
     margin-bottom: 44px;
 }
+
+#competitions .col { max-width: 1040px; }
 
 .section-head-row {
     display: flex;
@@ -396,26 +424,25 @@ header {
 }
 
 .section-link:hover { gap: 11px; }
-.section-link::after { content: '↗'; }
+.section-link::after { content: '\2197'; }
 
 /* ---------- project ---------- */
 .project-study {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.25fr 1fr;
     gap: 56px;
     align-items: start;
 }
 
 .project-kicker {
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.01em;
     color: var(--amber);
     margin-bottom: 14px;
 }
 
 .project-name {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-display);
     font-weight: 600;
     font-size: 68px;
     line-height: 0.95;
@@ -424,10 +451,11 @@ header {
 }
 
 .project-about {
-    color: var(--faded);
-    font-size: 13px;
-    line-height: 1.9;
+    color: var(--fg);
+    font-size: 14.5px;
+    line-height: 1.75;
     margin-bottom: 28px;
+    max-width: 62ch;
 }
 
 .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 32px; }
@@ -453,7 +481,7 @@ header {
     text-transform: uppercase;
     text-decoration: none;
     font-weight: 700;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-body);
     transition: background 0.2s, gap 0.2s;
 }
 
@@ -476,8 +504,9 @@ header {
 .dot { width: 8px; height: 8px; border-radius: 50%; }
 
 .terminal-lines {
-    background: #080604;
+    background: var(--sunk);
     padding: 18px;
+    font-family: var(--font-mono);
     font-size: 11px;
     line-height: 1.9;
 }
@@ -526,7 +555,7 @@ header {
 }
 
 .what-i-did {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-display);
     font-weight: 600;
     font-size: 19px;
     line-height: 1.25;
@@ -535,14 +564,11 @@ header {
     margin-right: 16px;
 }
 
-/* current roles keep the bright default; past roles recede instead
-   of trying to make "current" louder than the page's own baseline */
 .job:not(.still-here) .what-i-did { color: var(--faded-dim); }
 
 .where {
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: 12.5px;
+    letter-spacing: 0.01em;
     color: var(--faded);
     flex-grow: 1;
 }
@@ -556,9 +582,9 @@ header {
 
 .job-words {
     color: var(--faded);
-    font-size: 13px;
-    line-height: 1.85;
-    max-width: 680px;
+    font-size: 14.5px;
+    line-height: 1.75;
+    max-width: 62ch;
 }
 
 /* ---------- competitions (compact 2-up grid) ---------- */
@@ -579,7 +605,7 @@ header {
 }
 
 .placement {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-display);
     font-weight: 600;
     font-variant-numeric: tabular-nums;
     font-size: 23px;
@@ -593,7 +619,7 @@ header {
 .placement.great-one { color: var(--amber-warm); }
 
 .comp-title {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-display);
     font-weight: 600;
     font-size: 15px;
     letter-spacing: -0.01em;
@@ -602,9 +628,8 @@ header {
 }
 
 .comp-info {
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.01em;
     color: var(--faded);
 }
 
@@ -623,7 +648,7 @@ header {
 }
 
 .aside-title {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-display);
     font-weight: 700;
     font-size: 24px;
     letter-spacing: -0.03em;
@@ -631,10 +656,11 @@ header {
 }
 
 .aside-words {
-    color: var(--faded);
-    font-size: 13px;
-    line-height: 1.85;
+    color: var(--fg);
+    font-size: 14.5px;
+    line-height: 1.75;
     margin-bottom: 0;
+    max-width: 62ch;
 }
 
 /* ---------- writing ---------- */
@@ -661,16 +687,13 @@ header {
 }
 
 .write-title {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-display);
     font-weight: 600;
     font-size: 18px;
     letter-spacing: -0.01em;
     color: var(--faded-dim);
 }
 
-/* a "live" entry is an actual clickable post — title reads bright
-   by default and lights up amber on hover, same language the rest
-   of the site already uses for links */
 .write-entry.live .write-title { color: var(--fg); transition: color 0.2s; }
 .write-entry.live:hover .write-title { color: var(--amber); }
 
@@ -691,7 +714,7 @@ header {
 }
 
 .contact-name {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-display);
     font-weight: 600;
     font-size: clamp(44px, 6.5vw, 82px);
     line-height: 1;
@@ -700,12 +723,6 @@ header {
 }
 
 .contact-name span { color: var(--amber); }
-
-.contact-sub {
-    font-size: 13px;
-    color: var(--faded);
-    margin-bottom: 36px;
-}
 
 .contact-links { display: flex; flex-direction: column; gap: 12px; }
 
@@ -745,10 +762,6 @@ header {
 .secret-hint { opacity: 0.7; font-style: italic; transition: opacity 0.3s; }
 .secret-hint:hover { opacity: 1; }
 
-@media (pointer: coarse) {
-    #dot, #ring { display: none; }
-}
-
 /* ---------- mobile nav ---------- */
 .hamburger {
     display: none;
@@ -782,7 +795,7 @@ header {
 .mobile-nav {
     position: fixed;
     inset: 0;
-    background: rgba(15,13,10,0.98);
+    background: color-mix(in srgb, var(--bg) 98%, transparent);
     z-index: 200;
     display: flex;
     flex-direction: column;
@@ -798,7 +811,7 @@ header {
 .mobile-nav.open { opacity: 1; pointer-events: all; }
 
 .mobile-nav a {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-display);
     font-weight: 700;
     font-size: 32px;
     letter-spacing: -0.03em;
@@ -817,6 +830,7 @@ header {
     .header-inner { padding: 16px 20px; }
     .hamburger { display: flex; }
     .nav-links { display: none; }
+    .ground-toggle { margin-left: auto; margin-right: 4px; }
 
     .now-inner { padding: 9px 20px; }
     .now-text { max-width: calc(100vw - 120px); overflow: hidden; text-overflow: ellipsis; }
@@ -875,5 +889,4 @@ header {
         transition-duration: 0.001ms !important;
         scroll-behavior: auto !important;
     }
-    #dot, #ring { display: none !important; }
 }
