@@ -18,10 +18,12 @@
   // before first paint
   root.setAttribute("data-ground", chosen || DEFAULT);
 
+  // Which icon shows is CSS's job now, keyed off data-ground. The button
+  // holds both SVGs, so this must not touch its content or it would wipe
+  // them; it only keeps the accessible name in sync.
   function label(btn) {
     var now = root.getAttribute("data-ground");
     var next = now === "light" ? "dark" : "light";
-    btn.textContent = next === "light" ? "\u2600" : "\u263E";
     btn.setAttribute("aria-label", "Switch to " + next + " mode");
     btn.setAttribute("title", "Switch to " + next + " mode");
   }

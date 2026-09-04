@@ -213,6 +213,15 @@ header {
 
 .ground-toggle:hover { color: var(--amber); border-color: var(--amber); }
 
+/* The button carries both icons and CSS picks one, so the right state shows
+   even before theme.js runs and if it never does. Defaults to the sun,
+   matching theme.js's dark default; the icon shows the mode you switch *to*. */
+.ground-toggle svg { display: block; width: 16px; height: 16px; }
+.ground-toggle .icon-moon { display: none; }
+
+:root[data-ground="light"] .ground-toggle .icon-sun { display: none; }
+:root[data-ground="light"] .ground-toggle .icon-moon { display: block; }
+
 @media (pointer: coarse) {
     .ground-toggle { width: 44px; height: 44px; font-size: 15px; }
 }
