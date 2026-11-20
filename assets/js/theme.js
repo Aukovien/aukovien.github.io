@@ -28,12 +28,23 @@
     btn.setAttribute("title", "Switch to " + next + " mode");
   }
 
+  // pause hover fades during a theme switch so link text keeps up with the background
+  var switchTimer = null;
+  function markSwitching() {
+    root.classList.add("ground-switching");
+    clearTimeout(switchTimer);
+    switchTimer = setTimeout(function () {
+      root.classList.remove("ground-switching");
+    }, 320);
+  }
+
   window.__ground = {
     get: function () {
       return root.getAttribute("data-ground");
     },
     set: function (v) {
       if (v !== "light" && v !== "dark") return;
+      markSwitching();
       root.setAttribute("data-ground", v);
       try {
         localStorage.setItem(KEY, v);
